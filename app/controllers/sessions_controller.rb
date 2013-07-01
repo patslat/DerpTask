@@ -2,8 +2,8 @@ class SessionsController < ApplicationController
   before_filter :authorize_user, :only => [:destroy]
 
   def create
-    @user = User.find_by_username(params[:username])
-    if @user.authenticate_password(params[:password])
+    @user = User.find_by_username(params[:user][:username])
+    if @user.authenticate_password(params[:user][:password])
       session[:token] = @user.generate_session_token!
       redirect_to root_url
     else
@@ -12,8 +12,9 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
+  def logout
     @user = current_user
+    @current_user = nil
     @user.session_token = nil
     @user.save
     session[:token] = nil
