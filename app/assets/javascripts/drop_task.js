@@ -3,9 +3,14 @@ window.DropTask = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function ($content, $sidebar, data) {
+
+  initialize: function ($rootEl, $sidebar, data) {
     var projects = new DropTask.Collections.Projects(data.projects)
     this.installSidebar($sidebar, projects)
+
+    new DropTask.Routers.Projects($rootEl, projects)
+
+    Backbone.history.start();
 
   },
 
