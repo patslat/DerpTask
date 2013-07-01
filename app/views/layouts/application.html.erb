@@ -8,6 +8,8 @@
 </head>
 <body>
 <div id="header">
+
+  <div id="user-info">
   <% if logged_in? %>
     Logged in as: <%= current_user.username %>
     <br>
@@ -16,7 +18,11 @@
     <%= link_to "Log In", new_session_url %> |
     <%= link_to "Sign Up", new_user_url %>
   <% end %>
-  <h1>DerpTask</h1>
+  </div>
+
+  <div id="title">
+    <h1>DerpTask</h1>
+  </div>
 </div>
 
 <%= yield %>

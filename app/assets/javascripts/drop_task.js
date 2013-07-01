@@ -4,9 +4,9 @@ window.DropTask = {
   Views: {},
   Routers: {},
 
-  initialize: function ($rootEl, $sidebar, data) {
+  initialize: function ($rootEl, $menu, data) {
     var projects = new DropTask.Collections.Projects(data.projects)
-    this.installSidebar($sidebar, projects)
+    this.installMenu($menu, projects)
 
     new DropTask.Routers.Projects($rootEl, projects)
 
@@ -14,12 +14,12 @@ window.DropTask = {
 
   },
 
-  installSidebar: function ($sidebar, projects) {
+  installMenu: function ($menu, projects) {
     var that = this;
     var projectsView = new DropTask.Views.ProjectsIndex({
       collection: projects
     });
 
-    $sidebar.html(projectsView.render().$el);
+    $menu.html(projectsView.render().$el);
   }
 };

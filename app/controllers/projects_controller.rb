@@ -25,7 +25,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.where(id: params[:id]).includes(:groups, :tasks)
+    @project = Project.where(id: params[:id])
+                      .includes(
+                        :groups, {:include => :tasks}
+                      )
     render :json => @project
   end
 end

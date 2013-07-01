@@ -7,6 +7,6 @@ class Project < ActiveRecord::Base
   belongs_to :creator, :class_name => "User"
 
   def as_json(options = {})
-    super(options.merge(:include => [:groups, :tasks]))
+    super(options.merge(:include => {:groups =>  {:include => :tasks}}))
   end
 end
