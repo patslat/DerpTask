@@ -4,6 +4,7 @@ window.DropTask = {
   Views: {},
   Routers: {},
   initialize: function() {
+    var projects = new DropTask.Collections.Projects(data.projects)
   }
 };
 

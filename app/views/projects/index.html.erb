@@ -1,0 +1,9 @@
+<h1>DerpTask</h1>
+<div id="content">
+</div>
+
+<%= content_for :javascript do %>
+  <%= javascript_tag do %>
+    DropTask.initialize({ projects: <%== @projects.to_json %> });
+  <% end %>
+<% end -%>

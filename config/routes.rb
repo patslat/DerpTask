@@ -1,6 +1,6 @@
 DropTask::Application.routes.draw do
 
-  root :to => 'root#root'
+  root :to => 'projects#index'
 
   resource :session, :only => [:new, :create]
   get '/logout' => 'sessions#logout'

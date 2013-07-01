@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  respond_to :json
+  respond_to :html, :json
   before_filter :authorize_user
 
   def create
