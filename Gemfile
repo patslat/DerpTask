@@ -14,6 +14,8 @@ group :production do
   gem 'better_errors'
 end
 
+gem 'bcrypt-ruby'
+
 gem 'jquery-rails'
 
 gem 'backbone-on-rails'
