@@ -1,14 +1,11 @@
 class ProjectsController < ApplicationController
-
+  respond_to :json
   before_filter :authorize_user
 
   def create
     @project = current_user.projects.build(params[:project])
-    if @project.save
-      render :json => @project
-    else
-      render :json => @project
-    end
+    @project.save
+    respond_with @project
   end
 
   def destroy
@@ -16,7 +13,7 @@ class ProjectsController < ApplicationController
     if @project.destroy
       render :json => nil
     else
-      render :json => nil # TODO: raise error
+      render :json => @project, :status => :unprocessable_entity
     end
   end
 
@@ -24,7 +21,7 @@ class ProjectsController < ApplicationController
     @projects = Project.where(creator_id: current_user.id)
       .includes(:groups, :tasks)
 
-    render :json => @projects
+    respond_with @projects
   end
 
   def show
