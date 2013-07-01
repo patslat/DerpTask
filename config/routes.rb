@@ -6,4 +6,6 @@ DropTask::Application.routes.draw do
   get '/logout' => 'sessions#logout'
   resources :users, :only => [:new, :create, :destroy]
 
+  resources :projects
+
 end
