@@ -24,10 +24,18 @@
 
 #menu {
   position: absolute;
+  width: 100px;
   float: left;
 }
 
 #content {
-  padding-left: 200px;
+  padding-left: 125px;
   float: left;
+}
+
+#sidebar {
+  right: -300px;
+  width: 300px;
+  position: absolute;
+  display: block;
 }

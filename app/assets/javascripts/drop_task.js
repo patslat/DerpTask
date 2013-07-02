@@ -4,14 +4,13 @@ window.DropTask = {
   Views: {},
   Routers: {},
 
-  initialize: function ($rootEl, $menu, data) {
+  initialize: function ($rootEl, $menu, $sidebar, data) {
     var projects = new DropTask.Collections.Projects(data.projects)
+    var tasks = new DropTask.Collections.Tasks(data.tasks)
     this.installMenu($menu, projects)
 
-    new DropTask.Routers.Projects($rootEl, projects)
-
+    new DropTask.Routers.Projects($rootEl, $sidebar, projects, tasks)
     Backbone.history.start();
-
   },
 
   installMenu: function ($menu, projects) {

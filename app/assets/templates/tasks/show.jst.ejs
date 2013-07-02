@@ -1,11 +1,11 @@
-<div class="task">
-  Title: <%= model.escape("title") %>
-  <br>
-  Priority: <%= model.escape("priority") %>
-  <br>
-  Effort: <%= model.escape("effort") %>
-  <br>
-  Description: <%= model.escape("description") %>
-  <br>
-  Status: <%= model.escape("status") %>
+<div class="task-show">
+  <h3><%= model.escape("title") %></h3>
+  <h4>Priority:</h4>
+  <%= model.escape("priority") %>
+  <h4>Effort:</h4>
+  <%= model.escape("effort") %>
+  <h4>Description:</h4>
+  <%= model.escape("description") %>
+  <h4>Status:</h4>
+  <%= model.escape("status") %>
 </div>

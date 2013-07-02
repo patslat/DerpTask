@@ -1,8 +1,8 @@
-<div id="menu">
-</div>
+<div id="menu"></div>
 
-<div id="content">
-</div>
+<div id="content"></div>
+
+<div id="sidebar"></div>
 
 
 <script type="text/javascript" id="projects">
@@ -10,9 +10,14 @@ $(function () {
   DropTask.initialize(
     $("#content"),
     $("#menu"),
-    { projects: <%= @projects.to_json.html_safe %> }
-  )
-
+    $("#sidebar"),
+    {
+      projects: <%= @projects.to_json.html_safe %>,
+      tasks: <%= @projects.flat_map(&:groups)
+                   .flat_map(&:tasks)
+                   .to_json.html_safe %>
+     }
+  );
 })
 
 </script>
