@@ -1,5 +1,6 @@
 <div class="task-show">
   <h3><%= model.escape("title") %></h3>
+
   <h4>Priority:</h4>
   <%= model.escape("priority") %>
   <h4>Effort:</h4>
@@ -8,4 +9,6 @@
   <%= model.escape("description") %>
   <h4>Status:</h4>
   <%= model.escape("status") %>
+  <br>
+  <button id="close-sidebar">Close</button>
 </div>

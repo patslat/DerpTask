@@ -12,6 +12,7 @@ DropTask.Routers.Tasks = Backbone.Router.extend({
     var task = this.tasks.get(id);
     var taskView = new DropTask.Views.TaskView({ model:task })
     this.$sidebar.html(taskView.render().$el)
+    $(this.$sidebar).animate({ "right": "0px" }, "slow")
   },
 
 });
