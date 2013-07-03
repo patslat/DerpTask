@@ -24,12 +24,12 @@
 
 #menu {
   position: absolute;
-  width: 100px;
+  width: 18%;
   float: left;
 }
 
 #content {
-  padding-left: 125px;
+  padding-left: 250px;
   float: left;
 }
 
@@ -40,8 +40,9 @@
   display: block;
 }
 
-#group-view-container {
-
+.groups-view {
+  height: 100%;
+  width: 100%;
 }
 
 #group-view-content {
@@ -70,4 +71,8 @@
   border-radius: 50px;
   border: 1px solid;
   z-index: 1;
+}
+
+#new-group {
+  float: right;
 }

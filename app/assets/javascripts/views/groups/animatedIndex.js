@@ -32,10 +32,12 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
           var $taskDiv = $(ui.draggable).detach();
 
-          $(this).append($taskDiv.css({
-            top: ui.position.top,
-            left: ui.position.left
-          }));
+          $(this).append(
+              $taskDiv.css({
+                top: ui.position.top,
+                left: ui.position.left
+              })
+            );
 
           var groupId = $(this).attr("data-id");
           var taskId = ui.draggable.attr("data-id");

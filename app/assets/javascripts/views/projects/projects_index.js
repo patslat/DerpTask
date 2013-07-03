@@ -9,6 +9,10 @@ DropTask.Views.ProjectsIndex = Backbone.View.extend({
 
   template: JST['projects/index'],
 
+  events: {
+    "click #submit-new-project": "create"
+  },
+
   render: function () {
     var self = this;
 
@@ -17,9 +21,17 @@ DropTask.Views.ProjectsIndex = Backbone.View.extend({
     this.collection.each(function(project) {
       var projectView = new DropTask.Views.ProjectView({ model: project })
       self.$(".projects.content").append(projectView.render().$el);
+      self.$(".projects.content").append($("<br>"));
     });
 
     return this;
+  },
+
+  create: function (event) {
+    event.preventDefault();
+    var name = this.$("input[name=project\\[name\\]]").val();
+    this.collection.create({ name: name });
+
   }
 
 });

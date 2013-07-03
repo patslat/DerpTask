@@ -3,7 +3,9 @@ class GroupsController < ApplicationController
   before_filter :authorize_user
 
   def create
-    @group = Project.find(params[:project_id]).groups.build(params[group])
+    @project = Project.find(params[:group][:project_id]) ||
+               Project.find(params[:project_id])
+    @group = @project.groups.build(params[:group])
 
     @group.save
     respond_with @group
