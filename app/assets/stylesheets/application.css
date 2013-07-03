@@ -39,3 +39,29 @@
   position: absolute;
   display: block;
 }
+
+#group-view-container {
+  width: 3000px;
+  height: 3000px;
+}
+
+.group-circle {
+  text-align: center;
+  position: relative;
+  width: 500px;
+  height: 500px;
+  -webkit-border-radius: 250px;
+  -moz-border-radius: 250px;
+  border-radius: 250px;
+  border: 1px solid;
+}
+
+.task-circle {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  border: 1px solid;
+}

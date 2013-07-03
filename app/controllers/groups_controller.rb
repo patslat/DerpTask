@@ -8,4 +8,10 @@ class GroupsController < ApplicationController
     @group.save
     respond_with @group
   end
+
+  def update
+    @group = Group.find(params[:id])
+    @group.update_attributes(params[:group])
+    respond_with @group
+  end
 end

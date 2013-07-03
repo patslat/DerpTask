@@ -8,8 +8,9 @@ DropTask.Routers.Projects = Backbone.Router.extend({
   },
 
   routes: {
+    "projects/:id/animated": "groupsAnimatedView",
     "projects/:id": "show",
-    "all/:sort": "allTasks"
+    "all/:sort": "allTasks",
   },
 
   show: function (id) {
@@ -34,6 +35,16 @@ DropTask.Routers.Projects = Backbone.Router.extend({
     } else {
       // this.$rootEl.html(sortedView.dueDateRender().$el)
     }
+  },
+
+  groupsAnimatedView: function (id) {
+    var project = this.projects.get(id)
+    var groupsAnimatedView = new DropTask.Views.GroupsAnimatedIndex(
+      project.groups,
+      this.tasks
+    )
+
+    this.$rootEl.html(groupsAnimatedView.render().$el)
   }
 
 });

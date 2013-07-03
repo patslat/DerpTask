@@ -1,0 +1,20 @@
+<div id="group-view-container">
+  <div id="group-view-content">
+
+    <% groups.each(function (group) { %>
+      <div class="group-circle" data-id="<%= group.id %>">
+        <h2><%= group.escape("name") %></h2>
+
+
+        <% group.tasks.each(function (task) { %>
+          <div class="task-circle" data-id="<%= task.id %>">
+            <h4><%= task.escape("title") %></h4>
+          </div>
+
+        <% }) %>
+      </div>
+
+    <% }) %>
+
+  </div>
+</div>
