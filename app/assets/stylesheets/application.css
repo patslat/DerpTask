@@ -41,6 +41,10 @@
 }
 
 #group-view-container {
+
+}
+
+#group-view-content {
   width: 3000px;
   height: 3000px;
 }
@@ -54,14 +58,16 @@
   -moz-border-radius: 250px;
   border-radius: 250px;
   border: 1px solid;
+  z-index: 0;
 }
 
 .task-circle {
   width: 100px;
   height: 100px;
-  position: relative;
+  position: static;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
   border: 1px solid;
+  z-index: 1;
 }

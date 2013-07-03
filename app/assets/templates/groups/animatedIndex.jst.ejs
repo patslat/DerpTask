@@ -2,12 +2,18 @@
   <div id="group-view-content">
 
     <% groups.each(function (group) { %>
-      <div class="group-circle" data-id="<%= group.id %>">
+      <div class="group-circle"
+           data-id="<%= group.id %>"
+           style="left: <%= group.escape('left') %>px;
+                  top: <%= group.escape('top') %>px;">
         <h2><%= group.escape("name") %></h2>
 
 
         <% group.tasks.each(function (task) { %>
-          <div class="task-circle" data-id="<%= task.id %>">
+          <div class="task-circle"
+               data-id="<%= task.id %>"
+               style="left: <%= task.escape('left') %>px;
+                      top: <%= task.escape('top') %>px">
             <h4><%= task.escape("title") %></h4>
           </div>
 

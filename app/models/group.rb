@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  attr_accessible :name, :project_id, :creator_id
+  attr_accessible :name, :project_id, :creator_id, :top, :left
 
   belongs_to :project
 

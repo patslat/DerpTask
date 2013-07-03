@@ -4,7 +4,6 @@ DropTask.Routers.Projects = Backbone.Router.extend({
     this.$sidebar = $sidebar
     this.projects = projects;
     this.tasks = tasks;
-
   },
 
   routes: {

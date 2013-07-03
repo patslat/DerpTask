@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701162754) do
+ActiveRecord::Schema.define(:version => 20130703165128) do
 
   create_table "collaborations", :force => true do |t|
     t.integer  "group_id",        :null => false
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20130701162754) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "creator_id"
+    t.float    "top"
+    t.float    "left"
   end
 
   create_table "projects", :force => true do |t|
@@ -45,6 +47,8 @@ ActiveRecord::Schema.define(:version => 20130701162754) do
     t.string   "status",      :default => "None"
     t.integer  "group_id"
     t.integer  "creator_id"
+    t.float    "top"
+    t.float    "left"
   end
 
   create_table "users", :force => true do |t|
