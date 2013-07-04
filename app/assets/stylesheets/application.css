@@ -42,11 +42,6 @@
   display: block;
 }
 
-.groups-view {
-  height: 90%;
-  width: 90%;
-}
-
 #group-view-container {
   position: absolute;
   height: 90%;
