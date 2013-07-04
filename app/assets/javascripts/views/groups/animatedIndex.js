@@ -29,16 +29,6 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
         greedy: true,
         accept: ".task-circle",
         drop: function (event, ui) {
-
-          var $taskDiv = $(ui.draggable).detach();
-
-          $(this).append(
-              $taskDiv.css({
-                top: ui.position.top,
-                left: ui.position.left
-              })
-            );
-
           var groupId = $(this).attr("data-id");
           var taskId = ui.draggable.attr("data-id");
 
@@ -46,13 +36,26 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
           var task = self.tasks.get(taskId);
           var oldGroup = self.groups.get(task.get("group_id"));
 
-          group.tasks.add(task);
-          task.set("group_id", group.id);
+          if ( ! ($(this).has(ui.draggable).length > 0)) {
 
-          // could be optimized to only save if change is made
+            var $taskDiv = $(ui.draggable).detach();
+            $(this).append($taskDiv);
+            task.set("top", 100)
+            task.set("left", 250)
+            $taskDiv.css({
+              top: 100,
+              left: 250
+            })
+            group.tasks.add(task);
+            task.set("group_id", group.id);
+          }
+          else {
+            task.set("top", ui.position.top)
+            task.set("left", ui.position.left)
+          }
+
           group.save();
           task.save();
-
       }
     });
 
@@ -60,15 +63,8 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
       .draggable({
         revert: "invalid",
         refreshPositions: true,
-        stop: function (event, ui) {
-          var taskId = $(event.target).attr("data-id");
-          var task = self.tasks.get(taskId);
-          task.set("top", ui.position.top);
-          task.set("left", ui.position.left);
-          task.save()
-        }
-      })
-      .droppable();
+        connectToSortable: ".group-circle"
+    });
 
     return this;
   }
