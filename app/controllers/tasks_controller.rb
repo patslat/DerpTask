@@ -3,7 +3,12 @@ class TasksController < ApplicationController
   before_filter :authorize_user
 
   def create
-    @task = Project.find(params[:project_id]).tasks.build(params[:task])
+    group_id = params[:group_id] || params[:task][:group_id]
+    @group = Group.find(group_id)
+
+    @task = @group.tasks.build(params[:task])
+
+    @task.creator_id = current_user.id
 
     @task.save
     respond_with @task

@@ -1,4 +1,6 @@
 <div class="tasks-view">
+  <div id="tasks-header">
+  </div>
   <% collection.each(function(task) { %>
     <div class="task">
       <a href="#/tasks/<%= task.id %>"><%= task.escape("title") %></a>

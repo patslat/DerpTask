@@ -1,3 +1,64 @@
 <div class="group pull-left">
-  <h3><%= model.escape("name") %></h3>
+  <h3>
+    <%= model.escape("name") %>
+    <a href="#groups<%= model.id %>newtask" class="btn" data-toggle="modal">
+      <i class="icon-plus"></i>
+    </a>
+  </h3>
+</div>
+
+<div id="groups<%= model.id %>newtask" class="modal hide fade" tabindex="-1"
+     role="form"  aria-labelledby="myModalLabel" aria-hidden="true">
+  <form id="new-task-form">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+        x
+      </button>
+      <h3 id="new-task-form">New Task</h3>
+    </div>
+    <div class="modal-body">
+      <div id="#new-task">
+        <h4>New Task</h4>
+          <label for="task-title">Title:</label>
+          <input type="text" name="task[title]" id="task-title">
+
+          <label for="task-priority">Priority:</label>
+          <select name="task[priority]">
+            <% var priorities = ["None", "High","Very High"] %>
+            <% priorities.forEach(function(priority) { %>
+              <option value="<%= priority %>"><%= priority %></option>
+            <% })%>
+
+          </select>
+
+          <label for="task-effort">Effort:</label>
+          <select name="task[effort]">
+            <% var efforts = ["Small", "Medium","Large"] %>
+            <% efforts.forEach(function(effort) { %>
+              <option value="<%= effort %>"><%= effort %></option>
+            <% })%>
+          </select>
+
+          <label for="task-status">Status:</label>
+          <select name="task[status]">
+            <% var statuses=["Not Started", "In Progress","On Hold", "Completed"] %>
+            <% statuses.forEach(function(status) { %>
+              <option value="<%= status %>"><%= status %></option>
+            <% })%>
+          </select>
+
+          <label for="task-description">Description</label>
+          <textarea name="task[description]" id="task-description"></textarea>
+
+          <input type="hidden" name="task[group_id]" value="<%= model.id %>">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button id="submit-new-task" data-dismiss="modal" class="btn btn-primary">
+        Create
+      </button>
+
+    </div>
+  </form>
 </div>

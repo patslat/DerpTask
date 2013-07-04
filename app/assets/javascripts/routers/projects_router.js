@@ -45,6 +45,7 @@ DropTask.Routers.Projects = Backbone.Router.extend({
     )
 
     this.$rootEl.html(groupsAnimatedView.render().$el)
+    new DropTask.Routers.Tasks(this.$sidebar, this.tasks)
   }
 
 });

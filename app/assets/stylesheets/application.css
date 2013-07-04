@@ -24,8 +24,10 @@
 
 #menu {
   position: absolute;
-  width: 18%;
+  width: 200px;
+  height: 90%;
   float: left;
+  overflow: scroll;
 }
 
 #content {
@@ -36,18 +38,26 @@
 #sidebar {
   right: -300px;
   width: 300px;
-  position: absolute;
+  position: fixed;
   display: block;
 }
 
 .groups-view {
-  height: 100%;
-  width: 100%;
+  height: 90%;
+  width: 90%;
+}
+
+#group-view-container {
+  position: absolute;
+  height: 90%;
+  width: 75%;
+  border: 1px solid;
+  overflow: scroll;
 }
 
 #group-view-content {
-  width: 3000px;
-  height: 3000px;
+  width: 1500px;
+  height: 1500px;
 }
 
 .group-circle {
@@ -75,4 +85,8 @@
 
 #new-group {
   float: right;
+}
+
+.modal > form {
+    margin-bottom: 0;
 }

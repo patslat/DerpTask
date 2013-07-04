@@ -1,5 +1,14 @@
-<div id="group-view-container">
-  <div id="group-view-content">
+<div id="groups-header">
+  <div class="btn-group navigation-buttons">
+    <a href='#/projects/<%= groups.first().get("project_id") %>'
+       class="btn btn-small group animated">
+         Toggle View: <i class="icon-list"></i>
+    </a>
+  </div>
+</div>
+
+<div id="group-view-container" class="pull-left">
+  <div id="group-view-content" class="scroller-container">
 
     <% groups.each(function (group) { %>
       <div class="group-circle"
@@ -14,7 +23,9 @@
                data-id="<%= task.id %>"
                style="left: <%= task.escape('left') %>px;
                       top: <%= task.escape('top') %>px">
-            <h4><%= task.escape("title") %></h4>
+            <h4>
+              <a href="#/tasks/<%= task.id %>"><%= task.escape("title") %></a>
+            </h4>
           </div>
 
         <% }) %>
