@@ -1,4 +1,5 @@
 class Task < ActiveRecord::Base
+  before_save :default_values
   attr_accessible :title, :status, :priority, :effort,
     :description, :group_id, :creator_id, :top, :left
 
@@ -11,4 +12,9 @@ class Task < ActiveRecord::Base
   validates :effort, :inclusion => ["Large", "Medium", "Small"]
 
   belongs_to :group
+
+  def default_values
+    self.left ||= rand * 450
+    self.top ||= rand * 450
+  end
 end

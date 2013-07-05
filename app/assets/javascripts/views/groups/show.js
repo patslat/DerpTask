@@ -23,6 +23,7 @@ DropTask.Views.GroupView = Backbone.View.extend({
 
   createTask: function (event) {
     var taskForm = $(event.target).parents('#new-task-form').serializeJSON();
-    this.model.get("tasks").create(taskForm);
+
+    var task = this.model.get("tasks").create(taskForm);
   }
 });

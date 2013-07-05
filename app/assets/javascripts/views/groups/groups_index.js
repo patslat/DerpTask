@@ -2,8 +2,9 @@ DropTask.Views.GroupsIndex = Backbone.View.extend({
 
   initialize: function () {
     var self = this;
-    ["add", "change", "remove"].forEach(function(event) {
-      self.listenTo(self.model.get("groups"), event, self.render);
+    ["add", "change", "remove"].forEach(function(e) {
+      self.listenTo(self.collection, e, self.render);
+      // self.listenTo(self.collection, e, self.collection.sync);
     });
   },
 
@@ -33,9 +34,9 @@ DropTask.Views.GroupsIndex = Backbone.View.extend({
   create: function (event) {
     event.preventDefault();
     var name = this.$("input[name=group\\[name\\]]").val();
-    this.collection.create({
+    this.model.get("groups").create({
       name: name,
-      project_id: this.collection.first().get("project").id
+      project_id: this.model.id
     });
 
   },

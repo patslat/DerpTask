@@ -3,7 +3,9 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
   template: JST["groups/animatedIndex"],
 
   events: {
-    "click #taskShow": "taskShow"
+    "click #taskShow": "taskShow",
+    "click #submit-new-group": "this.model.sync",
+    "click #submit-new-group": "render"
   },
 
   render: function () {
@@ -21,18 +23,20 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
     $(this.$el.find("#group-view-content")).droppable({
       helper: ".group-circle-helper",
-      accept: ".group-circle-helper",
+      accept: ".group-pile",
       drop: function (event, ui) {
+        event.preventDefault();
         self.$el.find("#newgroup")
           .modal("toggle")
           .on("click", "#submit-new-group", function(event) {
             var name = self.$("input[name=group\\[name\\]]").val();
-            self.collection.create({
-              name: name
-              // set project_id!
+            var group = self.collection.create({
+              name: name,
+              project_id: self.model.id,
+              top: ui.position.top,
+              left: ui.position.left
             });
-          })
-
+          });
       }
     });
 
@@ -46,6 +50,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
       });
 
     $(this.$el.find(".group-circle"))
+      .css("position", "absolute")
       .draggable({
         stop: function (event, ui) {
           var groupId = $(event.target).attr("data-id");
@@ -108,8 +113,6 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
       .css({
         position: "absolute"
       });
-
-
 
     return this;
   },

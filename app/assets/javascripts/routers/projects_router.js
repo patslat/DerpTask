@@ -13,7 +13,8 @@ DropTask.Routers.Projects = Backbone.Router.extend({
   show: function (id) {
     var project = this.projects.get(id);
     var groupsView = new DropTask.Views.GroupsIndex({
-      model: project
+      model: project,
+      collection: project.get("groups")
     });
     this.$rootEl.html(groupsView.render().$el);
   },
