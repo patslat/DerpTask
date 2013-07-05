@@ -38,11 +38,6 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
         revert: "invalid"
       });
 
-
-
-
-
-
     $(this.$el.find(".group-circle"))
       .draggable({
         stop: function (event, ui) {
@@ -58,22 +53,24 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
         accept: ".task-circle",
         drop: function (event, ui) {
           var groupId = $(this).attr("data-id");
-          var taskId = ui.draggable.attr("data-id");
+          var taskId = $(ui.draggable).attr("data-id");
 
           var group = self.collection.get(groupId);
-          var task = group.get("tasks").get(taskId);
+
+          var task = group.get("project").getTasks().get(taskId);
+
           var oldGroup = self.collection.get(task.get("group_id"));
 
-          var $oldDivPos = $(ui.draggable).parent().position()
-          var $newDivPos = $(this).position()
+          var $oldDivPos = $(ui.draggable).parent().position();
+          var $newDivPos = $(this).position();
 
-          var positionRelOld = ui.helper.position()
+          var positionRelOld = ui.helper.position();
 
-          var newTop = positionRelOld.top + $oldDivPos.top - $newDivPos.top
-          var newLeft = positionRelOld.left + $oldDivPos.left - $newDivPos.left
+          var newTop = positionRelOld.top + $oldDivPos.top - $newDivPos.top;
+          var newLeft = positionRelOld.left + $oldDivPos.left - $newDivPos.left;
 
-          task.set("top", newTop)
-          task.set("left", newLeft)
+          task.set("top", newTop);
+          task.set("left", newLeft);
 
 
           if ( ! ($(this).has(ui.draggable).length > 0)) {
@@ -85,11 +82,13 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
               top: task.get("top"),
               left: task.get("left")
             })
-            group.tasks.add(task);
-            task.set("group_id", group.id);
+
+            task.set("group", group)
+            task.set("group_id", group.id)
           }
 
           group.save();
+          oldGroup.save();
           task.save();
       }
     });
