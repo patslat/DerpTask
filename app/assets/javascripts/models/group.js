@@ -1,11 +1,12 @@
-DropTask.Models.Group = Backbone.Model.extend({
-
-  initialize: function () {
-    this.on("change:tasks", this.parseTasks);
-    this.parseTasks();
-  },
-
-  parseTasks: function () {
-    this.tasks = new DropTask.Collections.Tasks(this.get('tasks'));
-  }
+DropTask.Models.Group = Backbone.RelationalModel.extend({
+  relations: [{
+    type: Backbone.HasMany,
+    key: "tasks",
+    relatedModel: "DropTask.Models.Task",
+    collectionType: "DropTask.Collections.Tasks",
+    reverseRelation: {
+      key: "group",
+      includeInJSON: "id"
+    }
+  }]
 });

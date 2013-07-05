@@ -36,6 +36,8 @@
 }
 
 #sidebar {
+  padding-left:10px;
+  height: 100%;
   right: -300px;
   width: 300px;
   position: fixed;

@@ -1,12 +1,24 @@
-DropTask.Models.Project = Backbone.Model.extend({
+DropTask.Models.Project = Backbone.RelationalModel.extend({
+  relations: [
+  {
+    type: Backbone.HasMany,
+    key: "groups",
+    relatedModel: "DropTask.Models.Group",
+    collectionType: "DropTask.Collections.Groups",
+    reverseRelation: {
+      key: "project",
+      includeInJSOn: "id"
+    }
+  }],
 
-  initialize: function () {
-    this.on("change:groups", this.parseGroups);
-    this.parseGroups();
-  },
-
-  parseGroups: function () {
-    this.groups = new DropTask.Collections.Groups(this.get('groups'));
+  getTasks: function () {
+    var tasks = new DropTask.Collections.Tasks()
+    var groups = this.get("groups");
+    groups.each(function (group) {
+      var groupTasks = group.get("tasks").toJSON()
+      tasks.add(groupTasks);
+    })
+    return tasks;
   }
 
 });

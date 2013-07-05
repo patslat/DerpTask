@@ -5,11 +5,10 @@ window.DropTask = {
   Routers: {},
 
   initialize: function ($rootEl, $menu, $sidebar, data) {
-    var projects = new DropTask.Collections.Projects(data.projects)
-    var tasks = new DropTask.Collections.Tasks(data.tasks)
-    this.installMenu($menu, projects)
+    var projects = new DropTask.Collections.Projects(data.projects);
+    this.installMenu($menu, projects);
 
-    new DropTask.Routers.Projects($rootEl, $sidebar, projects, tasks)
+    new DropTask.Routers.Projects($rootEl, $sidebar, projects);
     Backbone.history.start();
   },
 

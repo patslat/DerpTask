@@ -2,7 +2,6 @@
 
 <div id="content"></div>
 
-
 <div id="sidebar"></div>
 
 
@@ -14,9 +13,6 @@ $(function () {
     $("#sidebar"),
     {
       projects: <%= @projects.to_json.html_safe %>,
-      tasks: <%= @projects.flat_map(&:groups)
-                   .flat_map(&:tasks)
-                   .to_json.html_safe %>
      }
   );
 })

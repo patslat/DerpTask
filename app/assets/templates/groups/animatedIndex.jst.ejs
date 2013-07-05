@@ -1,6 +1,6 @@
 <div id="groups-header" class"row-fluid">
   <div class="span2">
-    <a href='#/projects/<%= groups.first().get("project_id") %>'
+    <a href='#/projects/<%= collection.first().get("project_id") %>'
        class="btn btn-small group animated pull-left">
          Toggle View: <i class="icon-list"></i>
     </a>
@@ -14,7 +14,7 @@
 <div id="group-view-container">
   <div id="group-view-content">
 
-    <% groups.each(function (group) { %>
+    <% collection.each(function (group) { %>
       <div class="group-circle"
            data-id="<%= group.id %>"
            style="left: <%= group.escape('left') %>px;
@@ -22,7 +22,7 @@
         <h2><%= group.escape("name") %></h2>
 
 
-        <% group.tasks.each(function (task) { %>
+        <% group.get("tasks").each(function (task) { %>
           <div class="task-circle"
                data-id="<%= task.id %>"
                style="left: <%= task.escape('left') %>px;

@@ -1,3 +1,3 @@
-DropTask.Models.Task = Backbone.Model.extend({
+DropTask.Models.Task = Backbone.RelationalModel.extend({
 
 });

@@ -15,7 +15,9 @@ DropTask.Views.GroupsIndex = Backbone.View.extend({
 
   render: function () {
     var self = this;
-    this.$el.html(this.template({ model: this.model }));
+    var project = this.collection.first().get("project");
+    this.$el.html(this.template({ model: project }));
+
     this.collection.each(function(group) {
       var groupView = new DropTask.Views.GroupView({ model: group });
       self.$(".groups-view").append(groupView.render().$el);

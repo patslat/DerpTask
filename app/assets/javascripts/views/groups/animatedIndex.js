@@ -1,8 +1,4 @@
 DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
-  initialize: function (groups, tasks) {
-    this.groups = groups;
-    this.tasks = tasks;
-  },
 
   template: JST["groups/animatedIndex"],
 
@@ -10,27 +6,28 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
     var self = this;
 
     var content = this.template({
-      groups: this.groups
-    })
+      collection: this.collection
+    });
 
-    this.$el.html(content)
+    this.$el.html(content);
 
 
     $(this.$el.find("#group-view-content")).droppable({
       helper: ".group-circle-helper",
+      accept: ".group-circle-helper",
       drop: function (event, ui) {
         self.$el.find("#newgroup")
           .modal("toggle")
           .on("click", "#submit-new-group", function(event) {
             var name = self.$("input[name=group\\[name\\]]").val();
-            self.groups.create({
+            self.collection.create({
               name: name
               // set project_id!
             });
           })
 
       }
-    })
+    });
 
     $(this.$el.find(".group-pile"))
       .draggable({
@@ -39,7 +36,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
           return $('<div class="group-circle-helper"></div>');
         },
         revert: "invalid"
-      })
+      });
 
 
 
@@ -50,7 +47,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
       .draggable({
         stop: function (event, ui) {
           var groupId = $(event.target).attr("data-id");
-          var group = self.groups.get(groupId);
+          var group = self.collection.get(groupId);
           group.set("top", ui.position.top);
           group.set("left", ui.position.left);
           group.save();
@@ -63,9 +60,9 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
           var groupId = $(this).attr("data-id");
           var taskId = ui.draggable.attr("data-id");
 
-          var group = self.groups.get(groupId);
-          var task = self.tasks.get(taskId);
-          var oldGroup = self.groups.get(task.get("group_id"));
+          var group = self.collection.get(groupId);
+          var task = group.get("tasks").get(taskId);
+          var oldGroup = self.collection.get(task.get("group_id"));
 
           var $oldDivPos = $(ui.draggable).parent().position()
           var $newDivPos = $(this).position()
