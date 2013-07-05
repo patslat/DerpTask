@@ -1,7 +1,6 @@
 DropTask.Routers.Projects = Backbone.Router.extend({
-  initialize: function ($rootEl, $sidebar, projects) {
+  initialize: function ($rootEl,projects) {
     this.$rootEl = $rootEl;
-    this.$sidebar = $sidebar;
     this.projects = projects;
   },
 
@@ -14,12 +13,9 @@ DropTask.Routers.Projects = Backbone.Router.extend({
   show: function (id) {
     var project = this.projects.get(id);
     var groupsView = new DropTask.Views.GroupsIndex({
-      collection: project.get("groups")
+      model: project
     });
     this.$rootEl.html(groupsView.render().$el);
-
-    // stops from displaying task show without proj index when refreshed
-    new DropTask.Routers.Tasks(this.$sidebar, project.getTasks());
   },
 
   allTasks: function (sort) {
@@ -29,7 +25,6 @@ DropTask.Routers.Projects = Backbone.Router.extend({
 
     if (sort === "priority") {
       this.$rootEl.html(sortedView.priorityRender().$el);
-      new DropTask.Routers.Tasks(this.$sidebar, this.projects.allTasks());
     } else {
       // this.$rootEl.html(sortedView.dueDateRender().$el)
     }
@@ -39,11 +34,10 @@ DropTask.Routers.Projects = Backbone.Router.extend({
     var project = this.projects.get(id);
     var groups = project.get("groups");
     var groupsAnimatedView = new DropTask.Views.GroupsAnimatedIndex({
+      model: project,
       collection: groups
     });
 
     this.$rootEl.html(groupsAnimatedView.render().$el);
-    new DropTask.Routers.Tasks(this.$sidebar, project.getTasks());
   }
-
 });

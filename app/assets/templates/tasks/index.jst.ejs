@@ -3,7 +3,9 @@
   </div>
   <% collection.each(function(task) { %>
     <div class="task">
-      <a href="#/tasks/<%= task.id %>"><%= task.escape("title") %></a>
+      <a id="taskShow" href="#" data-id="<%= task.id %>">
+        <%= task.escape("title") %>
+      </a>
     </div>
   <% })%>
 </div>

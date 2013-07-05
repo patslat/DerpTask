@@ -28,7 +28,9 @@
                style="left: <%= task.escape('left') %>px;
                       top: <%= task.escape('top') %>px">
             <h4>
-              <a href="#/tasks/<%= task.id %>"><%= task.escape("title") %></a>
+              <a id="taskShow" href="#" data-id="<%= task.id %>">
+                <%= task.escape("title") %>
+              </a>
             </h4>
           </div>
 

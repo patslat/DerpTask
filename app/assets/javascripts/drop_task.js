@@ -4,16 +4,15 @@ window.DropTask = {
   Views: {},
   Routers: {},
 
-  initialize: function ($rootEl, $menu, $sidebar, data) {
+  initialize: function ($rootEl, $menu, data) {
     var projects = new DropTask.Collections.Projects(data.projects);
     this.installMenu($menu, projects);
 
-    new DropTask.Routers.Projects($rootEl, $sidebar, projects);
+    new DropTask.Routers.Projects($rootEl, projects);
     Backbone.history.start();
   },
 
   installMenu: function ($menu, projects) {
-    var that = this;
     var projectsView = new DropTask.Views.ProjectsIndex({
       collection: projects
     });

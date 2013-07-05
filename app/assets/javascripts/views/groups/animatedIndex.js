@@ -2,6 +2,10 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
   template: JST["groups/animatedIndex"],
 
+  events: {
+    "click #taskShow": "taskShow"
+  },
+
   render: function () {
     var self = this;
 
@@ -10,6 +14,9 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
     });
 
     this.$el.html(content);
+
+    var $sidebar = $('<div id="sidebar">');
+    this.$el.append($sidebar);
 
 
     $(this.$el.find("#group-view-content")).droppable({
@@ -86,7 +93,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
             task.set("group", group)
             task.set("group_id", group.id)
           }
-
+          // all of these may not be necessary
           group.save();
           oldGroup.save();
           task.save();
@@ -105,6 +112,17 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
 
     return this;
+  },
+
+  taskShow: function (event) {
+    event.preventDefault();
+    var taskId = $(event.target).attr("data-id");
+    var task = this.model.getTasks().get(taskId);
+    var content = new DropTask.Views.TaskView({model: task});
+    $("#sidebar").html(content.render().$el).animate(
+      { "right": "0px" },
+      "slow"
+    );
   }
 
 })

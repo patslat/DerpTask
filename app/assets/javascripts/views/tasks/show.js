@@ -10,9 +10,11 @@ DropTask.Views.TaskView = Backbone.View.extend({
     $("#sidebar").animate({ "right": "-300px" }, "slow")
   },
 
-
   render: function () {
-    this.$el.html(JST['tasks/show']({ model: this.model }));
+    var content = this.template({
+      model: this.model
+    })
+    this.$el.html(content);
     return this;
   }
-})
+});
