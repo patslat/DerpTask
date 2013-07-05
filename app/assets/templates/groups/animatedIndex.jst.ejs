@@ -6,13 +6,13 @@
     </a>
   </div>
   <div class="offset5 span2">
-    <div id="group-pile">
+    <div class="group-pile">
     </div>
   </div>
 </div>
 
-<div id="group-view-container" class="">
-  <div id="group-view-content" class="scroller-container">
+<div id="group-view-container">
+  <div id="group-view-content">
 
     <% groups.each(function (group) { %>
       <div class="group-circle"
@@ -37,5 +37,28 @@
 
     <% }) %>
 
+  </div>
+</div>
+
+
+<div id="newgroup" class="modal hide fade" tabindex="-1"
+     role="form"  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      x
+    </button>
+    <h3 id="new-group-form">New Group</h3>
+  </div>
+  <div class="modal-body">
+    <div id="#new-group">
+      <h4>New Group</h4>
+        Group Name: <input type="text" name="group[name]">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button id="submit-new-group" data-dismiss="modal" class="btn btn-primary">
+      Create
+    </button>
   </div>
 </div>

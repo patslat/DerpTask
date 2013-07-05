@@ -87,3 +87,25 @@
 .modal > form {
     margin-bottom: 0;
 }
+
+.group-pile {
+  height: 30px;
+  width: 30px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  border: 1px solid;
+  background-color: #3C9;
+}
+
+.group-circle-helper {
+  text-align: center;
+  width: 500px;
+  height: 500px;
+  -webkit-border-radius: 250px;
+  -moz-border-radius: 250px;
+  border-radius: 250px;
+  border: 1px solid;
+  z-index: 0;
+  background-color: #3C9;
+}

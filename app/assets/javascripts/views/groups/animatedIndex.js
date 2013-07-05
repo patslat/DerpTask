@@ -15,6 +15,37 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
     this.$el.html(content)
 
+
+    $(this.$el.find("#group-view-content")).droppable({
+      helper: ".group-circle-helper",
+      drop: function (event, ui) {
+        self.$el.find("#newgroup")
+          .modal("toggle")
+          .on("click", "#submit-new-group", function(event) {
+            var name = self.$("input[name=group\\[name\\]]").val();
+            self.groups.create({
+              name: name
+              // set project_id!
+            });
+          })
+
+      }
+    })
+
+    $(this.$el.find(".group-pile"))
+      .draggable({
+        appendTo: "#group-view-content",
+        helper: function () {
+          return $('<div class="group-circle-helper"></div>');
+        },
+        revert: "invalid"
+      })
+
+
+
+
+
+
     $(this.$el.find(".group-circle"))
       .draggable({
         stop: function (event, ui) {
@@ -69,12 +100,13 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
     $(this.$el.find(".task-circle"))
       .draggable({
         revert: "invalid",
-        refreshPositions: true,
         connectToSortable: ".group-circle"
       })
       .css({
         position: "absolute"
       });
+
+
 
     return this;
   }
