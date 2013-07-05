@@ -42,9 +42,13 @@
   display: block;
 }
 
+#groups-header {
+  height: 30px;
+}
+
 #group-view-container {
   position: absolute;
-  height: 90%;
+  height: 80%;
   width: 75%;
   border: 1px solid;
   overflow: scroll;

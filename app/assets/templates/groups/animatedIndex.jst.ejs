@@ -1,13 +1,17 @@
-<div id="groups-header">
-  <div class="btn-group navigation-buttons">
+<div id="groups-header" class"row-fluid">
+  <div class="span2">
     <a href='#/projects/<%= groups.first().get("project_id") %>'
-       class="btn btn-small group animated">
+       class="btn btn-small group animated pull-left">
          Toggle View: <i class="icon-list"></i>
     </a>
   </div>
+  <div class="offset5 span2">
+    <div id="group-pile">
+    </div>
+  </div>
 </div>
 
-<div id="group-view-container" class="pull-left">
+<div id="group-view-container" class="">
   <div id="group-view-content" class="scroller-container">
 
     <% groups.each(function (group) { %>

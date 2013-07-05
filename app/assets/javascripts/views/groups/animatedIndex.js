@@ -36,22 +36,29 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
           var task = self.tasks.get(taskId);
           var oldGroup = self.groups.get(task.get("group_id"));
 
+          var $oldDivPos = $(ui.draggable).parent().position()
+          var $newDivPos = $(this).position()
+
+          var positionRelOld = ui.helper.position()
+
+          var newTop = positionRelOld.top + $oldDivPos.top - $newDivPos.top
+          var newLeft = positionRelOld.left + $oldDivPos.left - $newDivPos.left
+
+          task.set("top", newTop)
+          task.set("left", newLeft)
+
+
           if ( ! ($(this).has(ui.draggable).length > 0)) {
 
             var $taskDiv = $(ui.draggable).detach();
             $(this).append($taskDiv);
-            task.set("top", 100)
-            task.set("left", 250)
+
             $taskDiv.css({
-              top: 100,
-              left: 250
+              top: task.get("top"),
+              left: task.get("left")
             })
             group.tasks.add(task);
             task.set("group_id", group.id);
-          }
-          else {
-            task.set("top", ui.position.top)
-            task.set("left", ui.position.left)
           }
 
           group.save();
@@ -64,7 +71,10 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
         revert: "invalid",
         refreshPositions: true,
         connectToSortable: ".group-circle"
-    });
+      })
+      .css({
+        position: "absolute"
+      });
 
     return this;
   }
