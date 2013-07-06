@@ -1,7 +1,4 @@
 DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
-  initialize: function () {
-    this.listenTo(this.collection, "save", this.render)
-  },
 
   template: JST["groups/animatedIndex"],
 
@@ -77,8 +74,14 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
         greedy: true,
         accept: ".task-circle, .task-pile",
         drop: function (event, ui) {
+
+          var $groupCircle = $(this);
           var groupId = $(this).attr("data-id");
           var group = self.collection.get(groupId);
+
+          group.get("tasks").on("add", function (event) {
+            self.render();
+          });
 
           if ($(ui.draggable).attr("class") === "task-pile ui-draggable"){
             event.preventDefault();
@@ -87,10 +90,9 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
               .on("click", "#submit-new-task", function (event) {
                 var taskForm =
                   $(self.$el.find("#new-task-form")).serializeJSON();
-                taskForm.task.group_id = group.id;
-                var tasks = group.get("tasks")
 
-                tasks.create(taskForm);
+                taskForm.task.group_id = group.id;
+                group.get("tasks").create(taskForm.task, {wait: true});
 
               })
           }
@@ -139,8 +141,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
     $(this.$el.find(".task-circle"))
       .draggable({
-        revert: "invalid",
-        connectToSortable: ".group-circle"
+        revert: "invalid"
       })
       .css({
         position: "absolute"
