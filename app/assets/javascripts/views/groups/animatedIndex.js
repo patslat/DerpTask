@@ -1,18 +1,21 @@
 DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
+  initialize: function () {
+    this.listenTo(this.collection, "save", this.render)
+  },
 
   template: JST["groups/animatedIndex"],
 
   events: {
     "click #taskShow": "taskShow",
     "click #submit-new-group": "this.model.sync",
-    "click #submit-new-group": "render"
+    "click #submit-new-group": "render",
   },
 
   render: function () {
     var self = this;
     var content = this.template({
       model: this.model,
-      collection: this.model.get("groups")
+      collection: this.collection
     });
 
     this.$el.html(content);
@@ -85,7 +88,10 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
                 var taskForm =
                   $(self.$el.find("#new-task-form")).serializeJSON();
                 taskForm.task.group_id = group.id;
-                group.get("tasks").create(taskForm);
+                var tasks = group.get("tasks")
+
+                tasks.create(taskForm);
+
               })
           }
           else {
