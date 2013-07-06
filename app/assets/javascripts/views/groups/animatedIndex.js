@@ -1,11 +1,16 @@
 DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
+  initialize: function () {
+    console.log(this.collection)
+    this.listenTo(this.collection, "add", this.render)
+  },
+
   template: JST["groups/animatedIndex"],
 
   events: {
     "click #taskShow": "taskShow",
-    "click #submit-new-group": "this.model.sync",
-    "click #submit-new-group": "render",
+    // "click #submit-new-group": "this.model.sync",
+    // "click #submit-new-group": "render",
   },
 
   render: function () {
@@ -35,6 +40,9 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
               project_id: self.model.id,
               top: ui.position.top,
               left: ui.position.left
+            },
+            {
+              wait: true
             });
           });
       }
@@ -82,8 +90,9 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
           group.get("tasks").on("add", function (event) {
             self.render();
           });
+          console.log(ui.draggable)
 
-          if ($(ui.draggable).attr("class") === "task-pile ui-draggable"){
+          if ($(ui.draggable).attr("id") === "task-pile"){
             event.preventDefault();
             self.$el.find("#newtask")
               .modal("toggle")
