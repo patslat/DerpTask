@@ -5,14 +5,11 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
   events: {
     "click #taskShow": "taskShow",
     "click #submit-new-group": "this.model.sync",
-    "click #submit-new-group": "render",
-    "click #submit-new-task": "this.model.sync",
-    "click #submit-new-task": "render"
+    "click #submit-new-group": "render"
   },
 
   render: function () {
     var self = this;
-    console.log(this.model.get("groups"))
     var content = this.template({
       model: this.model,
       collection: this.model.get("groups")
