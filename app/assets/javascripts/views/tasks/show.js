@@ -9,7 +9,7 @@ DropTask.Views.TaskView = Backbone.View.extend({
   events: {
     "click button#close-sidebar": "hide",
     "click .title": "editTitle",
-    "change #priority": "editPriority"
+    "change .edit-select": "editSelect"
   },
 
   hide: function () {
@@ -40,9 +40,10 @@ DropTask.Views.TaskView = Backbone.View.extend({
     });
   },
 
-  editPriority: function (event) {
-    var priority = $(event.target).val();
-    this.model.set("priority", priority);
+  editSelect: function (event) {
+    var attribute = $(event.target).attr("id")
+    var newVal = $(event.target).val();
+    this.model.set(attribute, newVal);
     this.model.save();
   }
 
