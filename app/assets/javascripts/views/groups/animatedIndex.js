@@ -1,7 +1,6 @@
 DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
   initialize: function () {
-    console.log(this.collection)
     this.listenTo(this.collection, "add", this.render)
   },
 
@@ -9,8 +8,6 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
   events: {
     "click #taskShow": "taskShow",
-    // "click #submit-new-group": "this.model.sync",
-    // "click #submit-new-group": "render",
   },
 
   render: function () {
@@ -23,8 +20,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
     this.$el.html(content);
 
     var $sidebar = $('<div id="sidebar">');
-    this.$el.append($sidebar);
-
+    this.$el.prepend($sidebar);
 
     $(this.$el.find("#group-view-content")).droppable({
       helper: ".group-circle-helper",

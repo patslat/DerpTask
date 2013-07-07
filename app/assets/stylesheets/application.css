@@ -41,7 +41,7 @@
   right: -300px;
   width: 300px;
   position: fixed;
-  display: block;
+  z-index: 5;
 }
 
 #groups-header {
@@ -132,4 +132,11 @@
   border: 1px solid;
   z-index: 1;
   background-color: #3C9;
+}
+
+#group-title {
+}
+
+#task-title {
+
 }

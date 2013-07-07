@@ -2,19 +2,19 @@
 
 <h3>Very High</h3>
 <% collection.where({ priority: "Very High" }).forEach(function (task) { %>
-  <div class="task">
-    <a href="#/tasks/<%= task.id %>"><%= task.escape("title") %></a>
+  <div id="taskShow">
+    <a href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
   </div>
 <% }) %>
 <h3>High</h3>
 <% collection.where({ priority: "High" }).forEach(function (task) { %>
-  <div class="task">
-    <a href="#/tasks/<%= task.id %>"><%= task.escape("title") %></a>
+  <div id="taskShow">
+    <a href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
   </div>
 <% }) %>
 <h3>None</h3>
 <% collection.where({ priority: "None" }).forEach(function (task) { %>
-  <div class="task">
-    <a href="#/tasks/<%= task.id %>"><%= task.escape("title") %></a>
+  <div id="taskShow">
+    <a href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
   </div>
 <% }) %>

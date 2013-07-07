@@ -28,14 +28,14 @@
            data-id="<%= group.id %>"
            style="left: <%= group.escape('left') %>px;
                   top: <%= group.escape('top') %>px;">
-        <h2><%= group.escape("name") %></h2>
+        <h2 id="group-title"><%= group.escape("name") %></h2>
 
         <% group.get("tasks").each(function (task) { %>
           <div class="task-circle"
                data-id="<%= task.id %>"
                style="left: <%= task.escape('left') %>px;
                       top: <%= task.escape('top') %>px">
-            <h4>
+            <h4 id="task-title">
               <a id="taskShow" href="#" data-id="<%= task.id %>">
                 <%= task.escape("title") %>
               </a>

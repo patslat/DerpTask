@@ -4,7 +4,6 @@ DropTask.Views.GroupsIndex = Backbone.View.extend({
     var self = this;
     ["add", "change", "remove"].forEach(function(e) {
       self.listenTo(self.collection, e, self.render);
-      // self.listenTo(self.collection, e, self.collection.sync);
     });
   },
 
@@ -26,7 +25,7 @@ DropTask.Views.GroupsIndex = Backbone.View.extend({
     });
 
     var $sidebar = $('<div id="sidebar">');
-    this.$el.append($sidebar);
+    this.$el.prepend($sidebar);
 
     return this;
   },
