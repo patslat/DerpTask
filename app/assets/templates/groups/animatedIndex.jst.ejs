@@ -9,13 +9,13 @@
   <div class="pull-right span3">
     <div id="task-pile"
       class="task-pile pull-right"></div>
-    <h4 class="span1.5 pull-right">New Task</h4>
+    <h4 class="span1.5 pull-right">Task</h4>
   </div>
 
   <div class="pull-right span2.5">
-    <div id="task-pule"
+    <div id="task-pile"
       class="group-pile pull-right"></div>
-    <h4 class="span1.5 pull-right">New Group</h4>
+    <h4 class="span1.5 pull-right">Group</h4>
   </div>
 </div>
 
@@ -28,7 +28,7 @@
            data-id="<%= group.id %>"
            style="left: <%= group.escape('left') %>px;
                   top: <%= group.escape('top') %>px;">
-        <h2 id="group-title"><%= group.escape("name") %></h2>
+        <h2 id="group-title" class="group-title-text"><%= group.escape("name") %></h2>
 
         <% group.get("tasks").each(function (task) { %>
           <div class="task-circle"

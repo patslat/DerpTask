@@ -12,20 +12,22 @@
  *= require_tree .
  */
 
-#title {
-  padding-left: 50%;
-}
-
-#user-info {
-  float: left;
-  width: 200px;
-  height: 100%;
+#header {
+  background: #123c54;
+  border-bottom: 1px solid;
+  color: #fefefe;
+  padding: 9px 5px;
+  min-height: 50px;
 }
 
 #menu {
   position: absolute;
   height: 100%;
   overflow: scroll;
+  background-color: #F1F6F9;
+  color: #506B90;
+  margin: 0px;
+  padding: 10px;
 }
 
 #content {
@@ -38,12 +40,15 @@
   height: 100%;
   right: -300px;
   width: 300px;
+  display: block;
   position: fixed;
-  z-index: 5;
+  z-index: 1;
 }
 
 #groups-header {
   height: 30px;
+  padding: 9px 5px;
+  z-index: 1;
 }
 
 #group-view-container {
@@ -133,6 +138,7 @@
 }
 
 #group-title {
+
 }
 
 #task-title {
@@ -145,6 +151,7 @@
 
 #task-show {
   border: 2px solid;
+  background-color: #F1F6F9;
 }
 
 #description-container {

@@ -8,22 +8,31 @@
 
 </head>
 <body>
-<div id="header">
-
-  <div id="user-info">
-  <% if logged_in? %>
-    Logged in as: <%= current_user.username %>
-    <br>
-    <%= link_to "Log Out", logout_url %>
-  <% else %>
-    <%= link_to "Log In", new_session_url %> |
-    <%= link_to "Sign Up", new_user_url %>
-  <% end %>
+<div id="header" class="row-fluid">
+  <div id="title" class="span2 pull-left">
+    <h3>DropTask</h3>
   </div>
 
-  <div id="title">
-    <h1>DropTask</h1>
+  <div id="user-info" class="span3 pull-right">
+    <% if logged_in? %>
+      <div class="dropdown">
+        <ul class="dropdown-menu pull-left">
+          <li><%= link_to "Log Out", logout_url %></li>
+        </ul>
+        <button
+          class="btn dropdown-toggle"
+          data-toggle="dropdown"
+          href="#">
+            <%= current_user.username %>
+            <span class="caret"></span>
+        </button>
+      </div>
+    <% else %>
+      <button class="btn"><%= link_to "Log In", new_session_url %></button>
+      <button class="btn"><%= link_to "Sign Up", new_user_url %></button>
+    <% end %>
   </div>
+
 </div>
 
 <%= yield %>
