@@ -8,7 +8,7 @@ DropTask.Views.TaskView = Backbone.View.extend({
 
   events: {
     "click button#close-sidebar": "hide",
-    "click .title": "editTitle",
+    "click .editable-text": "editText",
     "change .edit-select": "editSelect"
   },
 
@@ -24,18 +24,24 @@ DropTask.Views.TaskView = Backbone.View.extend({
     return this;
   },
 
-  editTitle: function (event) {
+  editText: function (event) {
     var self = this;
     var originalText = $(event.target).text();
-    var titleForm = '<input type="text" id="title-edit" value="' +
-      originalText + '">';
+    var attribute = $(event.target).attr("data-attr");
 
-    $(event.target).html(titleForm).on("focusout", function (event) {
-      var newTitle = $(event.target).val();
-      if (newTitle === "") {
-        newTitle = originalText;
+    if (attribute === "title") {
+      var form = '<input type="text" value="' + originalText + '">';
+    } else {
+      $(event.target).toggleClass("editable-text")
+      var form = '<textarea>' + originalText + '</textarea>';
+    }
+
+    $(event.target).html(form).on("focusout", function (event) {
+      var newVal = $(event.target).val();
+      if (newVal === "") {
+        newVal = originalText || "description";
       }
-      self.model.set("title", newTitle);
+      self.model.set(attribute, newVal);
       self.model.save();
     });
   },

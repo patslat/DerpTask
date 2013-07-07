@@ -1,26 +1,63 @@
-<div class="task-show">
-  <a><h3 class="title"><%= model.escape("title") %></h3></a>
-
+<div id="task-show">
   <div id="task-details">
-    <label for="priority"><strong>Priority:<strong></label>
-    <select class="edit-select" id="priority">
-      <% var priorities = ["None", "High","Very High"] %>
-      <% priorities.forEach(function(priority) { %>
-        <option
-          value="<%= priority %>"
-          <% if (model.escape("priority") === priority) { %>
-            selected="selected"
-          <% } %>
-          ><%= priority %></option>
-      <% })%>
-    </select>
 
-    <h4>Effort:</h4>
-    <%= model.escape("effort") %>
-    <h4>Description:</h4>
-    <%= model.escape("description") %>
-    <h4>Status:</h4>
-    <%= model.escape("status") %>
+    <div class="task-attr-container">
+      <a><h3 class="editable-text" data-attr="title"><%= model.escape("title") %></h3></a>
+    </div>
+
+    <div class="task-attr-container">
+      <label for="priority" class="pull-left"><h4>Priority:</h4></label>
+      <select class="edit-select span2" id="priority">
+        <% var priorities = ["None", "High","Very High"] %>
+        <% priorities.forEach(function(priority) { %>
+          <option
+            value="<%= priority %>"
+            <% if (model.escape("priority") === priority) { %>
+              selected="selected"
+            <% } %>
+            ><%= priority %></option>
+        <% })%>
+      </select>
+    </div>
+
+    <div class="task-attr-container">
+      <label for="effort" class="pull-left"><h4>Effort:</h4></label>
+      <select class="edit-select span2" id="effort">
+        <% var efforts = ["Small", "Medium","Large"] %>
+        <% efforts.forEach(function(effort) { %>
+          <option
+            value="<%= effort %>"
+            <% if (model.escape("effort") === effort) { %>
+              selected="selected"
+            <% } %>
+            ><%= effort %></option>
+        <% })%>
+      </select>
+    </div>
+
+    <div class="task-attr-container">
+      <h4>Description:</h4>
+      <div id="description-container"
+        data-attr="description"
+        class="editable-text"><%= model.escape("description")%></div>
+    </div>
+
+    <div class="task-attr-container">
+      <label for="status" class="pull-left"><h4>Status:</h4></label>
+      <select class="edit-select span2" id="status">
+        <% var statuses =
+          ["Not Started", "In Progress","On Hold", "Completed"] %>
+        <% statuses.forEach(function(status) { %>
+          <option
+            value="<%= status %>"
+            <% if (model.escape("status") === status) { %>
+              selected="selected"
+            <% } %>
+            ><%= status %></option>
+        <% })%>
+      </select>
+    </div>
+
   </div>
   <br>
   <button id="close-sidebar" class="btn">Close</button>

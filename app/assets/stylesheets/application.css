@@ -140,3 +140,15 @@
 #task-title {
 
 }
+
+.task-attr-container {
+  margin: 10px;
+}
+
+#task-show {
+  border: 2px solid;
+}
+
+#description-container {
+  height: 50px;
+}
