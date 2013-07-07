@@ -2,8 +2,19 @@
   <a><h3 class="title"><%= model.escape("title") %></h3></a>
 
   <div id="task-details">
-    <h4>Priority:</h4>
-    <%= model.escape("priority") %>
+    <label for="priority"><strong>Priority:<strong></label>
+    <select name="task[priority]" id="priority">
+      <% var priorities = ["None", "High","Very High"] %>
+      <% priorities.forEach(function(priority) { %>
+        <option
+          value="<%= priority %>"
+          <% if (model.escape("priority") === priority) { %>
+            selected="selected"
+          <% } %>
+          ><%= priority %></option>
+      <% })%>
+    </select>
+
     <h4>Effort:</h4>
     <%= model.escape("effort") %>
     <h4>Description:</h4>

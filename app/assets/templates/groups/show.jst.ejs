@@ -23,7 +23,7 @@
           <input type="text" name="task[title]" id="task-title">
 
           <label for="task-priority">Priority:</label>
-          <select name="task[priority]">
+          <select name="task[priority]" id="task-priority">
             <% var priorities = ["None", "High","Very High"] %>
             <% priorities.forEach(function(priority) { %>
               <option value="<%= priority %>"><%= priority %></option>
@@ -32,7 +32,7 @@
           </select>
 
           <label for="task-effort">Effort:</label>
-          <select name="task[effort]">
+          <select name="task[effort]" id="task-effort">
             <% var efforts = ["Small", "Medium","Large"] %>
             <% efforts.forEach(function(effort) { %>
               <option value="<%= effort %>"><%= effort %></option>
@@ -40,7 +40,7 @@
           </select>
 
           <label for="task-status">Status:</label>
-          <select name="task[status]">
+          <select name="task[status]" id="task-status">
             <% var statuses=["Not Started", "In Progress","On Hold", "Completed"] %>
             <% statuses.forEach(function(status) { %>
               <option value="<%= status %>"><%= status %></option>

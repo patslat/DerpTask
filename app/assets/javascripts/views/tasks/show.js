@@ -8,7 +8,8 @@ DropTask.Views.TaskView = Backbone.View.extend({
 
   events: {
     "click button#close-sidebar": "hide",
-    "click .title": "editTitle"
+    "click .title": "editTitle",
+    "change #priority": "editPriority"
   },
 
   hide: function () {
@@ -31,11 +32,18 @@ DropTask.Views.TaskView = Backbone.View.extend({
 
     $(event.target).html(titleForm).on("focusout", function (event) {
       var newTitle = $(event.target).val();
+      if (newTitle === "") {
+        newTitle = originalText;
+      }
       self.model.set("title", newTitle);
       self.model.save();
     });
+  },
 
-
+  editPriority: function (event) {
+    var priority = $(event.target).val();
+    this.model.set("priority", priority);
+    this.model.save();
   }
 
 });
