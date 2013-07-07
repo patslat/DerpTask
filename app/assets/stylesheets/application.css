@@ -24,9 +24,7 @@
 
 #menu {
   position: absolute;
-  width: 200px;
-  height: 90%;
-  float: left;
+  height: 100%;
   overflow: scroll;
 }
 

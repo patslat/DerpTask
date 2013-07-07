@@ -25,6 +25,7 @@ DropTask.Views.TaskView = Backbone.View.extend({
   },
 
   editText: function (event) {
+    $(event.target).toggleClass("editable-text")
     var self = this;
     var originalText = $(event.target).text();
     var attribute = $(event.target).attr("data-attr");
@@ -32,7 +33,6 @@ DropTask.Views.TaskView = Backbone.View.extend({
     if (attribute === "title") {
       var form = '<input type="text" value="' + originalText + '">';
     } else {
-      $(event.target).toggleClass("editable-text")
       var form = '<textarea>' + originalText + '</textarea>';
     }
 
