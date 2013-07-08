@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708163521) do
+ActiveRecord::Schema.define(:version => 20130708220233) do
 
   create_table "collaborations", :force => true do |t|
-    t.integer  "group_id",        :null => false
     t.integer  "collaborator_id", :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "project_id"
   end
 
   create_table "groups", :force => true do |t|

@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :username
 
   has_many :projects, :foreign_key => :creator_id
+  has_many :collaborations, :foreign_key => :collaborator_id
+  has_many :collaboration_projects,
+    :through => :collaborations,
+    :source => :project
 
 
   def password=(password)

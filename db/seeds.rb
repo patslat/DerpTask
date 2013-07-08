@@ -8,16 +8,23 @@
 
 User.create(:username => 'patslat', :email => 'slattery714@gmail.com', :password => 123)
 
-User.create(:username => 'annakazaam', :email => 'slattery714@gmail.com', :password => 123)
-User.create(:username => 'socrates', :email => 'slattery714@gmail.com', :password => 123)
-User.create(:username => 'plato', :email => 'slattery714@gmail.com', :password => 123)
-User.create(:username => 'nietzsche', :email => 'slattery714@gmail.com', :password => 123)
+User.create(:username => 'annakazaam', :email => 'ak@gmail.com', :password => 123)
+User.create(:username => 'socrates', :email => 's@gmail.com', :password => 123)
+User.create(:username => 'plato', :email => 'p@gmail.com', :password => 123)
+User.create(:username => 'nietzsche', :email => 'n@gmail.com', :password => 123)
 
 Project.create(:name => "World Domination", :creator_id => 1)
+
+Project.create(:name => "Anna's Project", :creator_id => 2)
 
 Group.create(:name => "Clone Droptask", :project_id => 1, :creator_id => 1)
 Group.create(:name => "Do fun stuff", :project_id => 1, :creator_id => 1)
 Group.create(:name => "Run around!", :project_id => 1, :creator_id => 1)
+
+Group.create(:name => "Do Cool Stuff", :project_id => 2, :creator_id => 2)
+Group.create(:name => "Eat Tomatoes", :project_id => 2, :creator_id => 2)
+Group.create(:name => "Catch Spiders", :project_id => 2, :creator_id => 2)
+Group.create(:name => "Be a Neuroscientist", :project_id => 2, :creator_id => 2)
 
 
 Task.create(:title => "Set up API", :status => "In Progress", :priority => "Very High", :effort => "Small", :description => "Set up rails API first", :group_id => 1, :creator_id => 1, :due_date => "2013-07-13T00:00")
@@ -33,3 +40,10 @@ Task.create(:title => "Make it look better", :status => "In Progress", :priority
 Task.create(:title => "Go to the gym, fatty", :status => "In Progress", :priority => "Very High", :effort => "Small", :description => "Stop being lazy", :group_id => 3, :creator_id => 1, :due_date => "2013-07-13T00:00")
 
 Task.create(:title => "Break things", :status => "In Progress", :priority => "Very High", :effort => "Small", :description => "Follows by necessity from running around", :group_id => 3, :creator_id => 1, :due_date => "2013-07-13T00:00")
+
+
+Task.create(:title => "Go to grad school", :status => "In Progress", :priority => "Very High", :effort => "Small", :description => "And learn to brain", :group_id => 4, :creator_id => 2, :due_date => "2013-07-13T00:00")
+Task.create(:title => "Brains", :status => "In Progress", :priority => "Very High", :effort => "Small", :description => "Study them", :group_id => 5, :creator_id => 2, :due_date => "2013-07-13T00:00")
+Task.create(:title => "Have a birthday", :status => "In Progress", :priority => "Very High", :effort => "Small", :description => "Really soon!", :group_id => 4, :creator_id => 2, :due_date => "2013-07-13T00:00")
+
+Collaboration.create(:collaborator_id => 1, :project_id => 2)

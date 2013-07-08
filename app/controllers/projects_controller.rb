@@ -21,6 +21,8 @@ class ProjectsController < ApplicationController
     @projects = Project.where(creator_id: current_user.id)
       .includes(:groups, :tasks)
 
+    @projects += current_user.collaboration_projects
+
     respond_with @projects
   end
 

@@ -1,7 +1,7 @@
 class Collaboration < ActiveRecord::Base
-  attr_accessible :collaborator_id, :group_id
+  attr_accessible :collaborator_id, :project_id, :email_address
 
   belongs_to :collaborator,
              :class_name => 'User'
-  belongs_to :group
+  belongs_to :project
 end
