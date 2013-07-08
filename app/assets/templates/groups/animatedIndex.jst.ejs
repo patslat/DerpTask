@@ -1,26 +1,24 @@
-<div id="groups-header" class"row-fluid">
-  <div class="span4">
-    <a href='#/projects/<%= model.id %>'
-       class="btn btn-small group animated pull-left">
-         Toggle View: <i class="icon-list"></i>
-    </a>
-  </div>
+<div id="groups-header" class"row-fluid span10">
+  <a href='#/projects/<%= model.id %>'
+     class="btn btn-small group animated pull-left">
+       Toggle View: <i class="icon-list"></i>
+  </a>
 
-  <div class="pull-right span3">
+  <div class="span1.5">
     <div id="task-pile"
       class="task-pile pull-right"></div>
-    <h4 class="span1.5 pull-right">Task</h4>
+    <h4 class="span1.5 pull-left">Task</h4>
   </div>
 
-  <div class="pull-right span2.5">
+  <div class="span1.5">
     <div id="task-pile"
       class="group-pile pull-right"></div>
-    <h4 class="span1.5 pull-right">Group</h4>
+    <h4 class="span1.5 pull-left">Group</h4>
   </div>
 </div>
 
 
-<div id="group-view-container">
+<div id="group-view-container" class="span10">
   <div id="group-view-content">
 
     <% collection.each(function (group) { %>

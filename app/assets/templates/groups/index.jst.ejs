@@ -1,13 +1,11 @@
-<div id="groups-header">
-  <div class="btn-group navigation-buttons span2">
+<div id="groups-header" class="row-fluid">
     <a href='#/projects/<%= model.id %>/animated'
       class="btn btn-small group animated">
         Toggle View: <i class="icon-certificate"></i>
     </a>
-  </div>
 </div>
 
-<div class="groups-view">
+<div id="groups-view" class="fluid-container">
   <div class="offset2 span5">
     <h2>
       <%= model.escape("name") %>
@@ -15,9 +13,6 @@
         <i class="icon-plus"></i>
       </a>
     </h2>
-  </div>
-  <div class="offset4 span3">
-
   </div>
 </div>
 
