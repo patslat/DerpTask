@@ -13,6 +13,7 @@
  */
 
 #header {
+  width: 100%;
   background: #123c54;
   border-bottom: 1px solid;
   color: #fefefe;
@@ -27,17 +28,11 @@
   background-color: #F1F6F9;
   color: #506B90;
   margin: 0px;
-  padding: 10px;
-}
-
-#content {
-  padding-left: 250px;
-  float: left;
+  padding-left: 10px;
 }
 
 #sidebar {
   clear: left;
-  padding-left:10px;
   height: 100%;
   right: -300px;
   width: 300px;
@@ -157,4 +152,38 @@
 
 #description-container {
   height: 50px;
+}
+
+.task-all-detail {
+  width: 100%;
+  height: 49px;
+  color: #555;
+  background-color: #F1F6F9;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.priority {
+  height: 100%;
+  width: 10px;
+  position: relative;
+  float: left;
+  margin-right: 5px;
+
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+  .very-high {
+      background-color: #DD0000;
+  }
+
+  .high {
+    background-color: #E68F05;
+  }
+
+  .none {
+    background-color: #CCC;
+  }
+
+.task-status {
 }
