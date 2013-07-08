@@ -41,6 +41,11 @@
   z-index: 1;
 }
 
+.tasks {
+  height: 100%;
+  width: 100%;
+}
+
 #groups-header {
   height: 30px;
   padding: 9px 5px;

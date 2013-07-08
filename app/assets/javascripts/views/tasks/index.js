@@ -2,6 +2,8 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
 
   template: JST['tasks/index'],
 
+  taskTemplate: JST['tasks/index'],
+
   priorityTemplate: JST['tasks/priority'],
 
   dueDateTemplate: JST['tasks/dueDate'],
@@ -22,13 +24,39 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
   },
 
   priorityRender: function () {
-    var tasks = this.collection
+    var self = this;
 
     this.$el.html(
-      this.priorityTemplate({
-        collection: tasks
+      this.priorityTemplate()
+    )
+
+    var $container = this.$el.find(".very-high-priority")
+    var tasks = new DropTask.Collections.Tasks(
+      this.collection.where({
+        priority: "Very High"
       })
     )
+    var content = self.template({ collection: tasks });
+    $container.append(content);
+
+    $container = this.$el.find(".high-priority")
+    tasks = new DropTask.Collections.Tasks(
+      this.collection.where({
+        priority: "High"
+      })
+    )
+    var content = self.template({ collection: tasks });
+    $container.append(content);
+
+    $container = this.$el.find(".none-priority")
+    tasks = new DropTask.Collections.Tasks(
+      this.collection.where({
+        priority: "None"
+      })
+    )
+    var content = self.template({ collection: tasks });
+    $container.append(content);
+
     var $sidebar = $('<div id="sidebar">');
     this.$el.prepend($sidebar);
 

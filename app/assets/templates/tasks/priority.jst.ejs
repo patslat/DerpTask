@@ -1,67 +1,15 @@
-<h2>All Tasks By Priority</h2>
+<div class="tasks by-priority">
+  <h2>All Tasks By Priority</h2>
 
-<h3>Very High</h3>
-<% collection.where({ priority: "Very High" }).forEach(function (task) { %>
-  <div id="taskShow" class="task-all-detail">
-    <div class="priority very-high"></div>
-    <div class="task-title span5">
-        <div class="task-status span1">
-        <% if (task.escape("status") === "In Progress") { %>
-          <i class="icon-play"></i>
-        <% } else if (task.escape("status") === "On Hold") { %>
-          <i class="icon-pause"></i>
-        <% } %>
-        </div>
-      <a href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
-    </div>
-    <div class="task-parents offset1 span5">
-      <% var group = task.get("group") %>
-      <% var project = group.get("project")%>
-      <%= project.escape("name") %> > <%= group.escape("name") %>
-    </div>
-  </div>
-<% }) %>
-<h3>High</h3>
-<% collection.where({ priority: "High" }).forEach(function (task) { %>
-  <div id="taskShow" class="task-all-detail">
-    <div class="priority high"></div>
-    <div class="task-title span5">
-      <div class="task-status span1">
-      <% if (task.escape("status") === "In Progress") { %>
-        <i class="icon-play"></i>
-      <% } else if (task.escape("status") === "On Hold") { %>
-        <i class="icon-pause"></i>
-      <% } %>
-      </div>
-      <a href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
-    </div>
-    <div class="task-parents offset1 span5">
-      <% var group = task.get("group") %>
-      <% var project = group.get("project")%>
-      <%= project.escape("name") %> > <%= group.escape("name") %>
-    </div>
+  <div class="very-high-priority">
+    <h3>Very High</h3>
   </div>
 
-<% }) %>
-<h3>None</h3>
-<% collection.where({ priority: "None" }).forEach(function (task) { %>
-  <div id="taskShow" class="task-all-detail">
-    <div class="priority none"></div>
-    <div class="task-title span5">
-      <div class="task-status span1">
-      <% if (task.escape("status") === "In Progress") { %>
-        <i class="icon-play"></i>
-      <% } else if (task.escape("status") === "On Hold") { %>
-        <i class="icon-pause"></i>
-      <% } %>
-      </div>
-      <a href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
-    </div>
-    <div class="task-parents offset1 span5">
-      <% var group = task.get("group") %>
-      <% var project = group.get("project")%>
-      <%= project.escape("name") %> > <%= group.escape("name") %>
-    </div>
+  <div class="high-priority">
+    <h3>High</h3>
   </div>
 
-<% }) %>
+  <div class="none-priority">
+    <h3>None</h3>
+  </div>
+</div>
