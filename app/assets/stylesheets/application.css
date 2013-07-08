@@ -18,8 +18,11 @@
   border-bottom: 1px solid;
   color: #fefefe;
   padding: 9px 5px;
-  min-height: 50px;
+  height: 30px;
 }
+  #title {
+    padding-bottom: 15px;
+  }
 
 #content {
   color: #506b7e;
@@ -34,7 +37,12 @@
   color: #506B90;
   margin: 0px;
   padding-left: 10px;
+  font-size: 13px;
 }
+
+  section {
+    padding-bottom: 30px;
+  }
 
 #sidebar {
   clear: left;
@@ -72,7 +80,6 @@
 }
 
 .group-circle {
-  float: left;
   text-align: center;
   width: 500px;
   height: 500px;
@@ -145,7 +152,6 @@
 }
 
 #group-title {
-
 }
 
 #task-title {

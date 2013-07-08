@@ -18,7 +18,7 @@
 </div>
 
 
-<div id="group-view-container" class="span10">
+<div id="group-view-container" class="span10 pull-left">
   <div id="group-view-content">
 
     <% collection.each(function (group) { %>
@@ -26,10 +26,11 @@
            data-id="<%= group.id %>"
            style="left: <%= group.escape('left') %>px;
                   top: <%= group.escape('top') %>px;">
-        <h2 id="group-title" class="group-title-text"><%= group.escape("name") %></h2>
+        <h2 id="group-title"
+          class="group-title-text"><%= group.escape("name") %></h2>
 
         <% group.get("tasks").each(function (task) { %>
-          <div class="task-circle"
+          <div class="task-circle <%= task.escape('effort') %>"
                data-id="<%= task.id %>"
                style="left: <%= task.escape('left') %>px;
                       top: <%= task.escape('top') %>px">
