@@ -24,8 +24,6 @@ DropTask.Views.GroupsIndex = Backbone.View.extend({
       self.$("#groups-view").append(groupView.render().$el);
     });
 
-    console.log(self.$("#groups-view"))
-
     var $sidebar = $('<div id="sidebar">');
     this.$el.prepend($sidebar);
 

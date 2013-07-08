@@ -2,7 +2,7 @@
   <div id="tasks-header">
   </div>
   <% collection.each(function(task) { %>
-    <div id="taskShow" class="task-all-detail">
+    <div class="task-all-detail">
       <div class="priority very-high"></div>
       <div class="task-title span5">
           <div class="task-status span1">
@@ -12,7 +12,7 @@
             <i class="icon-pause"></i>
           <% } %>
           </div>
-        <a href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
+        <a id="taskShow" href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
       </div>
       <div class="task-parents offset1 span5">
         <% var group = task.get("group") %>
