@@ -87,7 +87,7 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     var $sidebar = $('<div id="sidebar">');
     this.$el.prepend($sidebar);
 
-    this.listenTo(this.collection, "change", this.priorityRender)
+    this.listenTo(this.collection, "change", this.dueDateRender)
 
     return this;
   },

@@ -2,7 +2,13 @@
   <% collection.each(function(task) { %>
     <div class="task-all-detail">
 
-      <div class="priority very-high"></div>
+      <% if (task.escape("priority") === "Very High") { %>
+        <div class="priority very-high"></div>
+      <% } else if (task.escape("priority") === "High") { %>
+        <div class="priority high"></div>
+      <% } else { %>
+        <div class="priority none"></div>
+      <% } %>
 
       <div class="task-status">
         <% if (task.escape("status") === "In Progress") { %>

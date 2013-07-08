@@ -9,7 +9,8 @@ DropTask.Views.TaskView = Backbone.View.extend({
   events: {
     "click button#close-sidebar": "hide",
     "click .editable-text": "editText",
-    "change .edit-select": "editSelect"
+    "change .edit-select": "editSelect",
+    "blur .editable-date": "editSelect"
   },
 
   hide: function () {
@@ -51,6 +52,5 @@ DropTask.Views.TaskView = Backbone.View.extend({
     var newVal = $(event.target).val();
     this.model.set(attribute, newVal);
     this.model.save();
-  }
-
+  },
 });
