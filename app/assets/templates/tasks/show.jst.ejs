@@ -6,6 +6,11 @@
     </div>
 
     <div class="task-attr-container">
+      <h4>Due Date:</h4>
+      <%= model.escape("due_date") %>
+    </div>
+
+    <div class="task-attr-container">
       <label for="priority" class="pull-left"><h4>Priority:</h4></label>
       <select class="edit-select span2" id="priority">
         <% var priorities = ["None", "High","Very High"] %>

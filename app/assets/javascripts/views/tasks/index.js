@@ -65,17 +65,32 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     return this;
   },
 
-  // TODO due date
-  // dueDateRender: function () {
-  //   var tasks = this.collection
-  //   //sort here
-  //   this.$el.html(
-  //     this.dueDateTemplate({
-  //       collection: tasks
-  //     })
-  //   )
-  //   return this;
-  // }
+  dueDateRender: function () {
+    var tasks = this.collection
+    this.$el.html(
+      this.dueDateTemplate()
+    )
+
+    var sortedTasks = new DropTask.Collections.Tasks(
+      tasks.sortBy(function(m) {
+        var date = new Date(m.get('due_date'))
+        return -date.getTime()
+      })
+    )
+
+    var content = this.template({
+      collection: sortedTasks
+    })
+
+    this.$el.append(content)
+
+    var $sidebar = $('<div id="sidebar">');
+    this.$el.prepend($sidebar);
+
+    this.listenTo(this.collection, "change", this.priorityRender)
+
+    return this;
+  },
 
 
   taskShow: function (event) {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703165128) do
+ActiveRecord::Schema.define(:version => 20130708163521) do
 
   create_table "collaborations", :force => true do |t|
     t.integer  "group_id",        :null => false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130703165128) do
     t.integer  "creator_id"
     t.float    "top"
     t.float    "left"
+    t.string   "due_date"
   end
 
   create_table "users", :force => true do |t|

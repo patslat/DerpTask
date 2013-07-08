@@ -86,7 +86,6 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
           group.get("tasks").on("add", function (event) {
             self.render();
           });
-          console.log(ui.draggable)
 
           if ($(ui.draggable).attr("id") === "task-pile"){
             event.preventDefault();

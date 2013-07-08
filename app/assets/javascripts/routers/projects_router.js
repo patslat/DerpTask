@@ -27,7 +27,7 @@ DropTask.Routers.Projects = Backbone.Router.extend({
     if (sort === "priority") {
       this.$rootEl.html(sortedView.priorityRender().$el);
     } else {
-      // this.$rootEl.html(sortedView.dueDateRender().$el)
+      this.$rootEl.html(sortedView.dueDateRender().$el);
     }
   },
 
