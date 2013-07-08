@@ -245,6 +245,7 @@
 
 #tasks-view {
   width: 100%;
+  float: left;
 }
 
 .task-due-date {
