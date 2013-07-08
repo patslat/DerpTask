@@ -36,6 +36,7 @@
 }
 
 #sidebar {
+  clear: left;
   padding-left:10px;
   height: 100%;
   right: -300px;
