@@ -55,16 +55,11 @@ DropTask.Views.GroupsIndex = Backbone.View.extend({
   createCollaborator: function (event) {
     event.preventDefault()
     var form = $(this.$el.find("#collaborator-form")).serializeJSON();
-    console.log(form)
     $.ajax({
       url: "/projects/" + this.model.id + "/collaborations" +
         "?&authenticity_token=" + AUTH_TOKEN,
-      method: "POST",
-      form: form,
-      success: function () {
-        console.log("it worked")
-      }
-
+      type: "POST",
+      data: form
     })
   }
 

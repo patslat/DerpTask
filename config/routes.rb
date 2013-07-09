@@ -7,6 +7,7 @@ DropTask::Application.routes.draw do
   resources :users, :only => [:new, :create, :destroy]
   resources :groups, :only => [:create, :destroy, :update]
   resources :tasks, :only => [:create, :destroy, :update]
+  resources :collaborations
   resources :projects do
     resources :collaborations, :only => [:create, :destroy]
     resources :groups, :only => [:create, :destroy]

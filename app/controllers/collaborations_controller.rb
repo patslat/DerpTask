@@ -1,5 +1,6 @@
 class CollaborationsController < ApplicationController
   respond_to :json
+  before_filter :authorize_user
 
   def create
     @user = User.find_by_email(params[:collaboration][:email_address])

@@ -8,6 +8,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
   events: {
     "click #taskShow": "taskShow",
+    "click #submit-new-collaborator": "createCollaborator"
   },
 
   render: function () {
@@ -163,6 +164,18 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
       { "right": "0px" },
       "slow"
     );
+  },
+
+  createCollaborator: function (event) {
+    event.preventDefault()
+    var form = $(this.$el.find("#collaborator-form")).serializeJSON();
+    $.ajax({
+      url: "/projects/" + this.model.id + "/collaborations" +
+        "?&authenticity_token=" + AUTH_TOKEN,
+      type: "POST",
+      data: form,
+
+    })
   }
 
 })

@@ -3,10 +3,13 @@
      class="btn btn-small group animated pull-left">
        Toggle View: <i class="icon-list"></i>
   </a>
-  <button
-    id="add-collaborators"
+  <a href="#collaborator-modal"
     class="btn btn-small pull-left"
-    style="margin-left: 4px">Add Collaborators</button>
+    style="margin-left: 4px;"
+    data-toggle="modal">
+    Add Collaborators
+  </a>
+
   <div class="span1.5">
     <div id="task-pile"
       class="task-pile pull-right"></div>
@@ -129,4 +132,39 @@
 
     </div>
   </form>
+</div>
+
+<div id="collaborator-modal" class="modal hide fade" tabindex="-1"
+  role="form" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+      x
+    </button>
+    <h3>Add a Collaborator</h3>
+  </div>
+
+  <div class="modal-body">
+    <form id="collaborator-form">
+      <input type="hidden"
+        name="collaboration[project_id]"
+        value="<%= model.id %>">
+
+      <label for="collaborator-email">Collaborator's Email:</label>
+      <input type="text"
+        name="collaboration[email_address]"
+        id="collaborator-email">
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">
+      Close
+    </button>
+
+    <button id="submit-new-collaborator"
+      data-dismiss="modal"
+      class="btn btn-primary">
+      Create
+    </button>
+  </div>
 </div>
