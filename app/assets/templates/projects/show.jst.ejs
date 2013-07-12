@@ -1,7 +1,9 @@
 <div class="project">
-  <a class="project-name"
-    href="#/projects/<%= model.id %>"
-    title="<%= model.escape('name') %>">
-    <%= model.escape("name") %>
-  </a>
+  <div class="row-fluid project-name-container">
+    <a class="project-name"
+      href="#/projects/<%= model.id %>"
+      title="<%= model.escape('name') %>">
+      <%= model.escape("name") %>
+    </a>
+  </div>
 </div>

@@ -1,8 +1,8 @@
-<div id="animated-index" class="container-fluid">
+<div id="animated-index">
 
-  <div id="groups-header" class"row-fluid span10">
+  <div id="groups-header" class"row-fluid">
     <a href='#/projects/<%= model.id %>'
-       class="btn btn-small group animated pull-left">
+       class="btn btn-small animated pull-left">
          Toggle View: <i class="icon-list"></i>
     </a>
     <a href="#collaborator-modal"
@@ -33,19 +33,23 @@
              data-id="<%= group.id %>"
              style="left: <%= group.escape('left') %>px;
                     top: <%= group.escape('top') %>px;">
-          <h2 id="group-title"
-            class="group-title-text"><%= group.escape("name") %></h2>
+          <div id="group-title-container">
+            <h2 id="group-title"
+              class="group-title-text"><%= group.escape("name") %></h2>
+          </div>
 
           <% group.get("tasks").each(function (task) { %>
             <div class="task-circle <%= task.escape('effort') %>"
                  data-id="<%= task.id %>"
                  style="left: <%= task.escape('left') %>px;
                         top: <%= task.escape('top') %>px">
-              <h4 id="task-title">
-                <a id="taskShow" href="#" data-id="<%= task.id %>">
-                  <%= task.escape("title") %>
-                </a>
-              </h4>
+              <div id="task-title-container">
+                <h4 id="task-title">
+                  <a id="taskShow" href="#" data-id="<%= task.id %>">
+                    <%= task.escape("title") %>
+                  </a>
+                </h4>
+              </div>
             </div>
 
           <% }) %>

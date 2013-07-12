@@ -3,6 +3,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
   initialize: function () {
     this.listenTo(this.collection, "add", this.render)
     this.listenTo(this.model.getTasks(), "add", this.render)
+    this.listenTo(this.model.getTasks(), "change", this.render)
   },
 
   template: JST["groups/animatedIndex"],

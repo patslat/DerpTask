@@ -1,42 +1,47 @@
-<div class="tasks-view container-fluid">
+<div class="tasks-view">
   <% collection.each(function(task) { %>
-    <div class="task-all-detail row-fluid">
+    <div class="task-all-detail">
 
-      <% if (task.escape("priority") === "Very High") { %>
-        <div class="priority very-high"></div>
-      <% } else if (task.escape("priority") === "High") { %>
-        <div class="priority high"></div>
-      <% } else { %>
-        <div class="priority none"></div>
-      <% } %>
+      <div class="task-row container-fluid">
 
-      <div class="task-status">
-        <% if (task.escape("status") === "In Progress") { %>
-          <i class="icon-play"></i>
-        <% } else if (task.escape("status") === "On Hold") { %>
-          <i class="icon-pause"></i>
-        <% } %>
-      </div>
-
-      <div class="task-title">
-        <a id="taskShow" href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
-      </div>
-
-      <div class="task-parents">
-        <% var group = task.get("group") %>
-        <% var project = group.get("project")%>
-        <%= project.escape("name") %> > <%= group.escape("name") %>
-      </div>
-
-      <div class="task-due-date">
-        <% if (task.escape("due_date")) { %>
-          <% var date = new Date(task.escape("due_date")); %>
-            Due:  <%= date.toDateString() %>
-            <br>
-            At: <%= date.toTimeString() %>
+        <% if (task.escape("priority") === "Very High") { %>
+          <div class="priority very-high"></div>
+        <% } else if (task.escape("priority") === "High") { %>
+          <div class="priority high"></div>
         <% } else { %>
-          No Due Date
+          <div class="priority none"></div>
         <% } %>
+
+        <div class="task-status">
+          <% if (task.escape("status") === "In Progress") { %>
+            <i class="icon-play"></i>
+          <% } else if (task.escape("status") === "On Hold") { %>
+            <i class="icon-pause"></i>
+          <% } %>
+        </div>
+
+        <div class="task-title">
+          <a id="taskShow" href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
+        </div>
+
+        <div class="task-info row-fluid">
+          <div class="task-parents span5">
+            <% var group = task.get("group") %>
+            <% var project = group.get("project")%>
+            <%= project.escape("name") %> > <%= group.escape("name") %>
+          </div>
+
+          <div class="task-due-date pull-right">
+            <% if (task.escape("due_date")) { %>
+              <% var date = new Date(task.escape("due_date")); %>
+                <div>Due: <%= date.toLocaleString() %></div>
+            <% } else { %>
+              <div>No Due Date<div>
+            <% } %>
+          </div>
+        </div>
+
+
       </div>
 
 

@@ -12,6 +12,10 @@
  *= require_tree .
  */
 
+body {
+  padding: 0px !important;
+}
+
 #header {
   width: 100%;
   background: #123c54;
@@ -95,11 +99,23 @@
   border-radius: 250px;
   border: 1px solid;
   z-index: 0;
+
+  filter: alpha(opacity=80); /* internet explorer */
+  -khtml-opacity: 0.8;      /* khtml, old safari */
+  -moz-opacity: 0.8;       /* mozilla, netscape */
+  opacity: 0.8;           /* fx, safari, opera */
 }
 
 .task-circle {
   border: 1px solid;
+  text-align: center;
   z-index: 1;
+
+  filter: alpha(opacity=80); /* internet explorer */
+  -khtml-opacity: 0.8;      /* khtml, old safari */
+  -moz-opacity: 0.8;       /* mozilla, netscape */
+  opacity: 0.8;           /* fx, safari, opera */
+
 }
   .Large {
     width: 140px;
@@ -137,6 +153,10 @@
 .group-pile {
   height: 30px;
   width: 30px;
+  filter: alpha(opacity=80); /* internet explorer */
+  -khtml-opacity: 0.8;      /* khtml, old safari */
+  -moz-opacity: 0.8;       /* mozilla, netscape */
+  opacity: 0.8;           /* fx, safari, opera */
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
@@ -147,6 +167,10 @@
 .task-pile {
   height: 30px;
   width: 30px;
+  filter: alpha(opacity=80); /* internet explorer */
+  -khtml-opacity: 0.8;      /* khtml, old safari */
+  -moz-opacity: 0.8;       /* mozilla, netscape */
+  opacity: 0.8;           /* fx, safari, opera */
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
@@ -158,6 +182,10 @@
   text-align: center;
   width: 500px;
   height: 500px;
+  filter: alpha(opacity=50); /* internet explorer */
+  -khtml-opacity: 0.5;      /* khtml, old safari */
+  -moz-opacity: 0.5;       /* mozilla, netscape */
+  opacity: 0.5;           /* fx, safari, opera */
   -webkit-border-radius: 250px;
   -moz-border-radius: 250px;
   border-radius: 250px;
@@ -169,19 +197,16 @@
 .task-circle-helper {
   width: 100px;
   height: 100px;
+  filter: alpha(opacity=50); /* internet explorer */
+  -khtml-opacity: 0.5;      /* khtml, old safari */
+  -moz-opacity: 0.5;       /* mozilla, netscape */
+  opacity: 0.5;           /* fx, safari, opera */
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
   border: 1px solid;
   z-index: 1;
   background-color: #3C9;
-}
-
-#group-title {
-}
-
-#task-title {
-
 }
 
 .task-attr-container {
@@ -232,12 +257,6 @@
   width: 200%;
 }
 
-.task-title {
-  width: 30%;
-  height: 50%;
-  float: left;
-}
-
 .task-status {
   height: 100%;
   width: 10px;
@@ -245,6 +264,10 @@
   float: left;
   margin-right: 5px;
 
+}
+
+.task-row {
+  padding-left: 0px !important;
 }
 
 .task-parents {
@@ -256,4 +279,13 @@
 #tasks-view {
   width: 100%;
   float: left;
+}
+
+#group-title {
+  padding-top: 15%;
+}
+
+#task-title {
+  font-size:auto;
+  margin-top:7%;
 }
