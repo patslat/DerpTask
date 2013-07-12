@@ -29,10 +29,14 @@
       </div>
 
       <div class="task-due-date">
-        <% var date = new Date(task.escape("due_date")); %>
-        Due:  <%= date.toTimeString() %>
-        <br>
-        On: <%= date.toDateString() %>
+        <% if (task.escape("due_date")) { %>
+          <% var date = new Date(task.escape("due_date")); %>
+            Due:  <%= date.toDateString() %>
+            <br>
+            At: <%= date.toTimeString() %>
+        <% } else { %>
+          No Due Date
+        <% } %>
       </div>
 
 

@@ -174,8 +174,6 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
         "?&authenticity_token=" + AUTH_TOKEN,
       type: "POST",
       data: form,
-
     })
   }
-
 })
