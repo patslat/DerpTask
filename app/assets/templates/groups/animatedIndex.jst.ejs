@@ -1,59 +1,61 @@
-<div id="groups-header" class"row-fluid">
-  <a href='#/projects/<%= model.id %>'
-     class="btn btn-small group animated pull-left">
-       Toggle View: <i class="icon-list"></i>
-  </a>
-  <a href="#collaborator-modal"
-    class="btn btn-small pull-left"
-    style="margin-left: 4px;"
-    data-toggle="modal">
-    Add Collaborators
-  </a>
+<div id="animated-index" class="container-fluid">
 
-  <div class="span1.5">
-    <div id="task-pile"
-      class="task-pile pull-right"></div>
-    <h4 class="span1.5 pull-left">Task</h4>
+  <div id="groups-header" class"row-fluid span10">
+    <a href='#/projects/<%= model.id %>'
+       class="btn btn-small group animated pull-left">
+         Toggle View: <i class="icon-list"></i>
+    </a>
+    <a href="#collaborator-modal"
+      class="btn btn-small pull-left"
+      style="margin-left: 4px;"
+      data-toggle="modal">
+      Add Collaborators
+    </a>
+
+    <div class="span1.5">
+      <div id="task-pile"
+        class="task-pile pull-right"></div>
+      <h4 class="span1.5 pull-left">Task</h4>
+    </div>
+
+    <div class="span1.5">
+      <div id="task-pile"
+        class="group-pile pull-right"></div>
+      <h4 class="span1.5 pull-left">Group</h4>
+    </div>
   </div>
 
-  <div class="span1.5">
-    <div id="task-pile"
-      class="group-pile pull-right"></div>
-    <h4 class="span1.5 pull-left">Group</h4>
+  <div id="group-view-container" class="row-fluid span10">
+    <div id="group-view-content">
+
+      <% collection.each(function (group) { %>
+        <div class="group-circle"
+             data-id="<%= group.id %>"
+             style="left: <%= group.escape('left') %>px;
+                    top: <%= group.escape('top') %>px;">
+          <h2 id="group-title"
+            class="group-title-text"><%= group.escape("name") %></h2>
+
+          <% group.get("tasks").each(function (task) { %>
+            <div class="task-circle <%= task.escape('effort') %>"
+                 data-id="<%= task.id %>"
+                 style="left: <%= task.escape('left') %>px;
+                        top: <%= task.escape('top') %>px">
+              <h4 id="task-title">
+                <a id="taskShow" href="#" data-id="<%= task.id %>">
+                  <%= task.escape("title") %>
+                </a>
+              </h4>
+            </div>
+
+          <% }) %>
+        </div>
+
+      <% }) %>
+
+    </div>
   </div>
 </div>
-
-<div id="group-view-container" class="span10">
-  <div id="group-view-content">
-
-    <% collection.each(function (group) { %>
-      <div class="group-circle"
-           data-id="<%= group.id %>"
-           style="left: <%= group.escape('left') %>px;
-                  top: <%= group.escape('top') %>px;">
-        <h2 id="group-title"
-          class="group-title-text"><%= group.escape("name") %></h2>
-
-        <% group.get("tasks").each(function (task) { %>
-          <div class="task-circle <%= task.escape('effort') %>"
-               data-id="<%= task.id %>"
-               style="left: <%= task.escape('left') %>px;
-                      top: <%= task.escape('top') %>px">
-            <h4 id="task-title">
-              <a id="taskShow" href="#" data-id="<%= task.id %>">
-                <%= task.escape("title") %>
-              </a>
-            </h4>
-          </div>
-
-        <% }) %>
-      </div>
-
-    <% }) %>
-
-  </div>
-</div>
-
 
 <div id="newgroup" class="modal hide fade" tabindex="-1"
      role="form"  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -63,6 +65,7 @@
     </button>
     <h3 id="new-group-form">New Group</h3>
   </div>
+
   <div class="modal-body">
     <div id="new-group-input">
         Group Name: <input type="text" name="group[name]">
@@ -168,3 +171,4 @@
     </button>
   </div>
 </div>
+

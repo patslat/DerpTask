@@ -1,6 +1,6 @@
-<div class="tasks-view">
+<div class="tasks-view container-fluid">
   <% collection.each(function(task) { %>
-    <div class="task-all-detail">
+    <div class="task-all-detail row-fluid">
 
       <% if (task.escape("priority") === "Very High") { %>
         <div class="priority very-high"></div>
