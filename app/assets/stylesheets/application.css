@@ -62,6 +62,10 @@ body {
   width: 100%;
 }
 
+.task-info {
+  max-height: 50px;
+}
+
 #animated-index {
   margin-left: 0px;
   padding-left: 0px;
@@ -263,10 +267,13 @@ body {
   position: relative;
   float: left;
   margin-right: 5px;
-
 }
 
-.task-row {
+.task-all-detail {
+  height: 75px;
+}
+
+.row {
   padding-left: 0px !important;
 }
 
