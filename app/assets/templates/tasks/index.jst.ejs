@@ -2,7 +2,7 @@
   <% collection.each(function(task) { %>
     <div class="task-all-detail">
 
-      <div class="task-row container-fluid">
+      <div class="task-row">
 
         <% if (task.escape("priority") === "Very High") { %>
           <div class="priority very-high"></div>
@@ -24,8 +24,8 @@
           <a id="taskShow" href="#" data-id="<%= task.id %>"><%= task.escape("title") %></a>
         </div>
 
-        <div class="task-info row-fluid">
-          <div class="task-parents span4">
+        <div class="task-info">
+          <div class="task-parents">
             <% var group = task.get("group") %>
             <% var project = group.get("project")%>
             <%= project.escape("name") %> > <%= group.escape("name") %>
@@ -36,7 +36,7 @@
               <% var date = new Date(task.escape("due_date")); %>
                 <div>Due: <%= date.toLocaleString() %></div>
             <% } else { %>
-              <div>No Due Date<div>
+              <div>No Due Date</div>
             <% } %>
           </div>
         </div>
