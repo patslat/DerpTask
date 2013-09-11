@@ -1,3 +1,4 @@
+<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
 <div id="animated-index">
 
   <div id="groups-header" class"row-fluid">
@@ -26,38 +27,6 @@
   </div>
 
   <div id="group-view-container" class="row-fluid span10">
-    <div id="group-view-content">
-
-      <% collection.each(function (group) { %>
-        <div class="group-circle"
-             data-id="<%= group.id %>"
-             style="left: <%= group.escape('left') %>px;
-                    top: <%= group.escape('top') %>px;">
-          <div id="group-title-container">
-            <h2 id="group-title"
-              class="group-title-text"><%= group.escape("name") %></h2>
-          </div>
-
-          <% group.get("tasks").each(function (task) { %>
-            <div class="task-circle <%= task.escape('effort') %>"
-                 data-id="<%= task.id %>"
-                 style="left: <%= task.escape('left') %>px;
-                        top: <%= task.escape('top') %>px">
-              <div id="task-title-container">
-                <h4 id="task-title">
-                  <a id="taskShow" href="#" data-id="<%= task.id %>">
-                    <%= task.escape("title") %>
-                  </a>
-                </h4>
-              </div>
-            </div>
-
-          <% }) %>
-        </div>
-
-      <% }) %>
-
-    </div>
   </div>
 </div>
 
