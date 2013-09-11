@@ -296,3 +296,7 @@ body {
   font-size:auto;
   margin-top:7%;
 }
+
+circle {
+  fill: steelblue;
+}

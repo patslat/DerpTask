@@ -25,7 +25,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
     var height = 900,
         width = 900
-        radius = 100;
+        radius = 200;
 
     svg = d3.select(this.el)
       .append("svg:svg")
@@ -35,6 +35,9 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
     groups = this.collection.map(function (group) {
       return {
+        name: group.get("name"),
+        id: group.id,
+        tasks: group.get("tasks"),
         radius: radius,
         cx: Math.random() * (width - radius) + radius,
         cy: Math.random() * (height - radius) + radius
@@ -43,43 +46,60 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
     var drag = d3.behavior.drag()
       .origin(Object)
-      .on("drag", dragmove);
+      .on("drag", dragmove)
+      .on("dragend", dragstop)
 
     function dragmove(d) {
-      console.log(d3.event)
-      console.log(d)
       d3.select(this)
         .attr("cx", d.cx += d3.event.dx)
-        .attr("cy", d.cy += d3.event.dy);
+        .attr("cy", d.cy += d3.event.dy)
+
+      d3.select(".group-label-" + d.id)
+        .attr("dx", d.cx)
+        .attr("dy", d.cy)
     }
 
-    circle = svg.selectAll(".circle").data(groups)
+    function dragstop(d) {
+      console.log(d)
+    }
 
-    circle.enter()
-      .append("circle")
+
+
+    function showSidebar (d) {
+      console.log("toggle sidebar now")
+      console.log(d)
+    }
+
+    var node = svg.append("g")
+      .data(groups)
+      .attr("class", "nodes")
       .attr("class", "group-circle")
-      .attr("r", function (d) { return d.radius })
-      .attr("cx", function (d) { return d.cx })
-      .attr("cy", function (d) { return d.cy })
-      .call(drag)
+      .selectAll("circle")
+        .data(groups)
+      .enter().append("circle")
+        .attr("r", function (d) { return d.radius })
+        .attr("cx", function (d) { return d.cx })
+        .attr("cy", function (d) { return d.cy })
+        .attr("data-id", function (d) { return d.id })
+        .call(drag)
 
-
-
-//    $(this.$el.find(".group-circle")).draggable({
-//      drag: function () {
-//        var offset = $(this).offset()
-//        $(this).attr("cx", offset.left - 70)
-//        $(this).attr("cy", offset.top - 70)
-//      }
-//    });
-
+    var text = svg.append("g")
+        .attr("class", "labels")
+      .selectAll("text")
+        .data(groups)
+      .enter().append("text")
+        .attr("class", function (d) { return "group-label-" + d.id })
+        .attr("dx", function(d) { return d.cx })
+        .attr("dy", function(d) { return d.cy })
+        .text(function(d) { return d.name })
+        .call(drag)
 //
 //    var $sidebar = $('<div id="sidebar">');
 //    this.$el.prepend($sidebar);
 //
 //    $(this.$el.find("#group-view-content")).droppable({
-//      helper: ".group-circle-helper",
 //      accept: ".group-pile",
+//      helper: ".group-circle-helper",
 //      drop: function (event, ui) {
 //        event.preventDefault();
 //        self.$el.find("#newgroup")
