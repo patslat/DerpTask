@@ -23,23 +23,35 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
     this.$el.html(content);
 
 
-    var h = 900,
-        w = 900;
+    var height = 900,
+        width = 900
+        radius = 100;
 
     svg = d3.select(this.el)
       .append("svg:svg")
       .attr("class", "group-view-content")
-      .attr("height", h)
-      .attr("width", w);
+      .attr("height", height)
+      .attr("width", width);
 
     groups = this.collection.map(function (group) {
-      var radius = 100;
       return {
         radius: radius,
-        x: Math.random() * (w - radius) + radius,
-        y: Math.random() * (h - radius) + radius
+        cx: Math.random() * (width - radius) + radius,
+        cy: Math.random() * (height - radius) + radius
       }
     });
+
+    var drag = d3.behavior.drag()
+      .origin(Object)
+      .on("drag", dragmove);
+
+    function dragmove(d) {
+      console.log(d3.event)
+      console.log(d)
+      d3.select(this)
+        .attr("cx", d.cx += d3.event.dx)
+        .attr("cy", d.cy += d3.event.dy);
+    }
 
     circle = svg.selectAll(".circle").data(groups)
 
@@ -47,8 +59,19 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
       .append("circle")
       .attr("class", "group-circle")
       .attr("r", function (d) { return d.radius })
-      .attr("x", function (d) { return d.x })
-      .attr("y", function (d) { return d.y });
+      .attr("cx", function (d) { return d.cx })
+      .attr("cy", function (d) { return d.cy })
+      .call(drag)
+
+
+
+//    $(this.$el.find(".group-circle")).draggable({
+//      drag: function () {
+//        var offset = $(this).offset()
+//        $(this).attr("cx", offset.left - 70)
+//        $(this).attr("cy", offset.top - 70)
+//      }
+//    });
 
 //
 //    var $sidebar = $('<div id="sidebar">');
