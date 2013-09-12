@@ -39,6 +39,8 @@ DropTask.Routers.Projects = Backbone.Router.extend({
       collection: groups
     });
 
+
     this.$rootEl.html(groupsAnimatedView.render().$el);
+    $(".padding-circle").attr("r", "0")
   }
 });

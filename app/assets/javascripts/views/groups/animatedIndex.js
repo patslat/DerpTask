@@ -54,9 +54,9 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
                   }
               });
 
-//              if (children.length <= 1) {
-//                children.push({name: "", size: 0, className: "task-circle"});
-//              }
+              if (children.length <= 1) {
+                children.push({name: "", size: 0, className: "padding-circle"});
+              }
               return children
             })(),
           }
@@ -70,7 +70,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
     var pack = d3.layout.pack()
       .size([diameter - 4, diameter - 4])
-      .value(function(d) {return d.size; })
+      .value(function(d) {return (d.size === 0) ? 30 : d.size; })
 
     var svg = d3.select(this.el).append("svg")
         .attr("width", diameter)
@@ -91,6 +91,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
         .attr("r", function (d) { return d.r; })
         .attr("class", function (d) { return d.className })
 
+
     node.filter(function (d) { return d.className === "group-circle" }).append("text")
         .attr("dy", function (d) { return -d.r; })
         .style("text-anchor", "middle")
@@ -104,6 +105,10 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
         .attr("class", "task-title");
 
     d3.select(self.frameElement).style("height", diameter + "px");
+//
+//    node.filter(function (d) { return d.className === "padding0circle" })
+//        .attr("r", "")
+
 
 //    var height = 900,
 //        width = 900
