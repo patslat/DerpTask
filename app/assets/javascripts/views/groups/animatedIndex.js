@@ -22,77 +22,178 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
     this.$el.html(content);
 
+    var diameter = 900,
+        format = d3.format(",d");
 
-    var height = 900,
-        width = 900
-        radius = 200;
+    var groups = {
+      name: "groups",
+      size: diameter,
+      children: this.collection.map(function (group) {
+          return {
+            name: group.get("name"),
+            size: 300,
+            id: group.id,
+            className: "group-circle",
+            children: (function () {
+              var children = group.get("tasks").map(function (task) {
+                  return {
+                    name: task.get("title"),
+                    className: "task-circle",
+                    size: (function(){
+                      var priority = task.get("priority");
+                      if (priority === "Very High") {
+                        return 50;
+                      } else if (priority === "High") {
+                        return 40;
+                      } else {
+                        return 30;
+                      }
+                    })(),
+                    effort: task.get("effort"),
+                    group_id: task.get("group_id"),
+                  }
+              });
 
-    svg = d3.select(this.el)
-      .append("svg:svg")
-      .attr("class", "group-view-content")
-      .attr("height", height)
-      .attr("width", width);
+//              if (children.length <= 1) {
+//                children.push({name: "", size: 0, className: "task-circle"});
+//              }
+              return children
+            })(),
+          }
+          //radius: radius,
+          //cx: Math.random() * (width - radius) + radius,
+          //cy: Math.random() * (height - radius) + radius
+        })
+      };
 
-    groups = this.collection.map(function (group) {
-      return {
-        name: group.get("name"),
-        id: group.id,
-        tasks: group.get("tasks"),
-        radius: radius,
-        cx: Math.random() * (width - radius) + radius,
-        cy: Math.random() * (height - radius) + radius
-      }
-    });
+      console.log(groups)
 
-    var drag = d3.behavior.drag()
-      .origin(Object)
-      .on("drag", dragmove)
-      .on("dragend", dragstop)
+    var pack = d3.layout.pack()
+      .size([diameter - 4, diameter - 4])
+      .value(function(d) {return d.size; })
 
-    function dragmove(d) {
-      d3.select(this)
-        .attr("cx", d.cx += d3.event.dx)
-        .attr("cy", d.cy += d3.event.dy)
+    var svg = d3.select(this.el).append("svg")
+        .attr("width", diameter)
+        .attr("height", diameter)
+      .append("g")
+        .attr("transform", "translate(2,2)");
 
-      d3.select(".group-label-" + d.id)
-        .attr("dx", d.cx)
-        .attr("dy", d.cy)
-    }
+    var node = svg.datum(groups).selectAll(".node")
+        .data(pack.nodes)
+      .enter().append("g")
+        .attr("class", function (d) { return d.children ? "node" : "leaf node"; })
+        .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 
-    function dragstop(d) {
-      console.log(d)
-    }
+    node.append("title")
+        .attr("r", function (d) { return d.r; });
 
+    node.append("circle")
+        .attr("r", function (d) { return d.r; })
+        .attr("class", function (d) { return d.className })
 
+    node.filter(function (d) { return d.className === "group-circle" }).append("text")
+        .attr("dy", function (d) { return -d.r; })
+        .style("text-anchor", "middle")
+        .text(function (d) { return d.name.substring(0, d.r / 3); })
+        .attr("class", "group-title")
 
-    function showSidebar (d) {
-      console.log("toggle sidebar now")
-      console.log(d)
-    }
+    node.filter(function (d) { return d.className === "task-circle"; }).append("text")
+        .attr("dy", ".3em")
+        .style("text-anchor", "middle")
+        .text(function (d) { return d.name.substring(0, d.r / 3); })
+        .attr("class", "task-title");
 
-    var node = svg.append("g")
-      .data(groups)
-      .attr("class", "nodes")
-      .attr("class", "group-circle")
-      .selectAll("circle")
-        .data(groups)
-      .enter().append("circle")
-        .attr("r", function (d) { return d.radius })
-        .attr("cx", function (d) { return d.cx })
-        .attr("cy", function (d) { return d.cy })
-        .attr("data-id", function (d) { return d.id })
-        .call(drag)
+    d3.select(self.frameElement).style("height", diameter + "px");
 
-    var text = svg.append("g")
-        .attr("class", "labels")
-      .selectAll("text")
-        .data(groups)
-      .enter().append("text")
-        .attr("class", function (d) { return "group-label-" + d.id })
-        .attr("dx", function(d) { return d.cx })
-        .attr("dy", function(d) { return d.cy })
-        .text(function(d) { return d.name })
-        .call(drag)
+//    var height = 900,
+//        width = 900
+//        radius = 200;
+//
+//    svg = d3.select(this.el)
+//      .append("svg:svg")
+//      .attr("class", "group-view-content")
+//      .attr("height", height)
+//      .attr("width", width);
+//
+//    groups = this.collection.map(function (group) {
+//      return {
+//        name: group.get("name"),
+//        id: group.id,
+//        tasks: group.get("tasks").map(function (task) {
+//          return {
+//            title: task.get("title"),
+//            priority: task.get("priority"),
+//            effort: task.get("effort"),
+//            group_id: task.get("group_id"),
+//          }
+//        }),
+//        radius: radius,
+//        cx: Math.random() * (width - radius) + radius,
+//        cy: Math.random() * (height - radius) + radius
+//      }
+//    });
+//
+//    var pack = d3.layout.pack()
+//
+//    var drag = d3.behavior.drag()
+//      .origin(Object)
+//      .on("drag", dragmove)
+//      .on("dragend", dragstop)
+//
+//    function dragmove(d) {
+//      d3.select(this)
+//        .attr("cx", d.cx += d3.event.dx)
+//        .attr("cy", d.cy += d3.event.dy)
+//
+//      d3.select(".group-label-" + d.id)
+//        .attr("dx", d.cx)
+//        .attr("dy", d.cy)
+//    }
+//
+//    function dragstop(d) {
+//      console.log(d)
+//    }
+//
+//
+//
+//    function showSidebar (d) {
+//      console.log("toggle sidebar now")
+//      console.log(d)
+//    }
+//
+//    var node = svg.append("g")
+//      .data(groups)
+//      .attr("class", "nodes")
+//      .attr("class", "group-circle")
+//      .selectAll("circle")
+//        .data(groups)
+//      .enter().append("circle")
+//        .attr("r", function (d) { return d.radius })
+//        .attr("cx", function (d) { return d.cx })
+//        .attr("cy", function (d) { return d.cy })
+//        .attr("data-id", function (d) { return d.id })
+//        .call(drag)
+//
+//    var text = svg.append("g")
+//        .attr("class", "labels")
+//      .selectAll("text")
+//        .data(groups)
+//      .enter().append("text")
+//        .attr("class", function (d) { return "group-label-" + d.id })
+//        .attr("dx", function(d) { return d.cx })
+//        .attr("dy", function(d) { return d.cy })
+//        .text(function(d) { return d.name })
+//
+//
+//    var tasks = svg.append("g")
+//        .attr("class", "tasks")
+//        .selectAll("circle")
+//          .data(groups)
+//        .enter().append("circle")
+//          .attr("r", function (d) { return d.radius / 5 })
+//          .attr("cx", function (d) { return d.cx })
+//          .attr("cy", function (d) {return d.cy })
+
 //
 //    var $sidebar = $('<div id="sidebar">');
 //    this.$el.prepend($sidebar);
