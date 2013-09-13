@@ -1,6 +1,6 @@
 <div class="tasks-view">
   <% collection.each(function(task) { %>
-    <div class="task-all-detail" data-id="<%= task.id %>">
+    <div class="task-all-detail" data-id="<%= task.id %>" data-order="<%= task.get("order") %>">
 
       <div class="task-row">
 

@@ -2,7 +2,7 @@ class Task < ActiveRecord::Base
   before_save :default_values
   attr_accessible :title, :status, :priority, :effort,
     :description, :group_id, :creator_id, :due_date,
-    :top, :left
+    :top, :left, :order
 
   validates :status, :inclusion => [
     "Not Started", "In Progress","On Hold", "Completed"
@@ -17,5 +17,6 @@ class Task < ActiveRecord::Base
   def default_values
     self.left ||= rand * 450
     self.top ||= rand * 450
+    self.order ||= id.to_f
   end
 end

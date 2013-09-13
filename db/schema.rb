@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708220233) do
+ActiveRecord::Schema.define(:version => 20130913030807) do
 
   create_table "collaborations", :force => true do |t|
     t.integer  "collaborator_id", :null => false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130708220233) do
     t.float    "top"
     t.float    "left"
     t.string   "due_date"
+    t.float    "order"
   end
 
   create_table "users", :force => true do |t|

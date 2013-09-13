@@ -34,8 +34,16 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     var tasks = new DropTask.Collections.Tasks(
       this.collection.where({
         priority: "Very High"
-      })
+      }),
+      {
+        comparator: function (model1, model2) {
+          var order1 = parseFloat(model1.get("order")),
+              order2 = parseFloat(model2.get("order"));
+          return (order1 >= order2) ? 1 : -1;
+        }
+      }
     )
+
     var content = self.template({ collection: tasks });
     $container.append(content);
 
@@ -43,7 +51,15 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     tasks = new DropTask.Collections.Tasks(
       this.collection.where({
         priority: "High"
-      })
+      }),
+      {
+        comparator: function (model1, model2) {
+          var order1 = parseFloat(model1.get("order")),
+              order2 = parseFloat(model2.get("order"));
+          return (order1 >= order2) ? 1 : -1;
+        }
+      }
+
     )
     var content = this.template({ collection: tasks });
     $container.append(content);
@@ -52,7 +68,15 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     tasks = new DropTask.Collections.Tasks(
       this.collection.where({
         priority: "None"
-      })
+      }),
+      {
+        comparator: function (model1, model2) {
+          var order1 = parseFloat(model1.get("order")),
+              order2 = parseFloat(model2.get("order"));
+          return (order1 >= order2) ? 1 : -1;
+        }
+      }
+
     )
     var content = this.template({ collection: tasks });
     $container.append(content);
@@ -63,20 +87,48 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     this.listenTo(this.collection, "change", this.priorityRender)
 
     this.$el.find(".tasks-view").sortable({
-      connectWith: ".tasks-view"
-    });
-    this.$el.find(".tasks-view").droppable({
-      accept: '.task-all-detail',
-      drop: function(event, ui) {
-        var droppedTaskId = ui.draggable.attr("data-id"),
+      connectWith: ".tasks-view",
+      update: function (event, ui) {
+
+        console.log(parseFloat(ui.item.prev().attr("data-order")));
+        console.log(parseFloat(ui.item.attr("data-order")))
+        console.log(parseFloat(ui.item.next().attr("data-order")))
+
+
+        var droppedTaskId = ui.item.attr("data-id"),
+            droppedTask = self.collection.get(droppedTaskId),
+            oldPriority = $(ui.sender).parent().attr("data-priority"),
             newPriority = $(event.target).parent().attr("data-priority"),
-            task = self.collection.get(droppedTaskId);
-        task.save(
-          { priority: newPriority },
-          { wait: true }
-        );
-       }
+            newOrder = (
+              (parseFloat(ui.item.prev().attr("data-order")) +
+              parseFloat(ui.item.next().attr("data-order"))) / 2.0
+            );
+        console.log("NEW ORDER IS: " + newOrder);
+        if (oldPriority) {
+          droppedTask.save(
+            { priority: newPriority, order: newOrder },
+            { wait: true }
+          )
+        } else {
+          droppedTask.save(
+            { order: newOrder },
+            { wait: true }
+          )
+        }
+      }
     });
+//    this.$el.find(".tasks-view").droppable({
+//      accept: '.task-all-detail',
+//      drop: function(event, ui) {
+//        var droppedTaskId = ui.draggable.attr("data-id"),
+//            newPriority = $(event.target).parent().attr("data-priority"),
+//            task = self.collection.get(droppedTaskId);
+//        task.save(
+//          { priority: newPriority },
+//          { wait: true }
+//        );
+//       }
+//    });
 
     return this;
   },
