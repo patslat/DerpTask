@@ -85,7 +85,16 @@ body {
   background-color: #F1F6F9;
 }
 
+.pile-container {
+  height: 30px;
+  display: inline-block;
+  float: left;
+  padding-left: 20px;
+}
+
 #group-view-container {
+  float: left;
+  max-width: 100%;
   max-height: 650px;
   margin-left: 0px;
   border: 1px solid;
@@ -161,6 +170,7 @@ body {
 }
 
 .group-pile {
+  float: right;
   height: 30px;
   width: 30px;
   filter: alpha(opacity=80); /* internet explorer */
@@ -173,8 +183,20 @@ body {
   border: 1px solid;
   background-color: #3C9;
 }
+.group-pile-container {
+  display: inline-block;
+  width: 120px;
+}
+.task-pile-container {
+  display: inline-block;
+  width: 120px;
+}
 
+.pile-label {
+  float: left;
+}
 .task-pile {
+  float: right;
   height: 30px;
   width: 30px;
   filter: alpha(opacity=80); /* internet explorer */

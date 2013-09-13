@@ -1,6 +1,6 @@
 <div id="animated-index">
 
-  <div id="groups-header" class"row-fluid">
+  <div id="groups-header">
     <a href='#/projects/<%= model.id %>'
        class="btn btn-small animated pull-left">
          Toggle View: <i class="icon-list"></i>
@@ -12,20 +12,22 @@
       Add Collaborators
     </a>
 
-    <div class="span1.5">
-      <div id="task-pile"
-        class="task-pile pull-right"></div>
-      <h4 class="span1.5 pull-left">Task</h4>
-    </div>
+    <div class="pile-container">
+      <div class="task-pile-container">
+        <div style="float: left;"><strong>New Task</strong></div>
+        <div id="task-pile" class="task-pile" style="float: right;">
+        </div>
+      </div>
 
-    <div class="span1.5">
-      <div id="task-pile"
-        class="group-pile pull-right"></div>
-      <h4 class="span1.5 pull-left">Group</h4>
+      <div class="group-pile-container">
+        <div style="float: left;"><strong>New Group</strong></div>
+        <div id="task-pile" class="group-pile">
+        </div>
+      </div>
     </div>
   </div>
 
-  <div id="group-view-container" class="row-fluid span10">
+  <div id="group-view-container">
     <div id="group-view-content">
 
       <% collection.each(function (group) { %>
