@@ -45,7 +45,7 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
         priority: "High"
       })
     )
-    var content = self.template({ collection: tasks });
+    var content = this.template({ collection: tasks });
     $container.append(content);
 
     $container = this.$el.find(".none-priority")
@@ -54,13 +54,29 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
         priority: "None"
       })
     )
-    var content = self.template({ collection: tasks });
+    var content = this.template({ collection: tasks });
     $container.append(content);
 
     var $sidebar = $('<div id="sidebar">');
     this.$el.prepend($sidebar);
 
     this.listenTo(this.collection, "change", this.priorityRender)
+
+    this.$el.find(".tasks-view").sortable({
+      connectWith: ".tasks-view"
+    });
+    this.$el.find(".tasks-view").droppable({
+      accept: '.task-all-detail',
+      drop: function(event, ui) {
+        var droppedTaskId = ui.draggable.attr("data-id"),
+            newPriority = $(event.target).parent().attr("data-priority"),
+            task = self.collection.get(droppedTaskId);
+        task.save(
+          { priority: newPriority },
+          { wait: true }
+        );
+       }
+    });
 
     return this;
   },
@@ -88,6 +104,7 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     this.$el.prepend($sidebar);
 
     this.listenTo(this.collection, "change", this.dueDateRender)
+
 
     return this;
   },
