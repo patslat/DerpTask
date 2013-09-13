@@ -1,17 +1,37 @@
-<h1>Log In</h1>
+<div class="log-in-form">
+  <h1>Log In</h1>
 
-<form action="<%= session_url %>" method="post">
+  <form action="<%= session_url %>" method="post">
 
-  <input type="hidden"
-    name="authenticity_token"
-    value="<%= form_authenticity_token %>">
+    <input type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
 
-  <label for="user-username">Username:</label>
-  <input type="text" name="user[username]" id="user-username">
-  <br>
-  <label for="user-password">Password:</label>
-  <input type="password" name="user[password]" id="user-password">
-  <br>
-  <input type="submit" value="Log In">
+    <label for="user-username">Username:</label>
+    <input type="text" name="user[username]" id="user-username">
+    <br>
+    <label for="user-password">Password:</label>
+    <input type="password" name="user[password]" id="user-password">
+    <br>
+    <input type="submit" value="Log In">
 
-</form>
+  </form>
+</div>
+
+
+<div class="hero-unit">
+  <div class="demo-1">
+    <h3>Demo Account 1</h3>
+    <h4>Account Name: demo1</h4>
+    <h4>Password: demo1</h4>
+    <h4>Email (for collaboration): demo1@demo.com</h4>
+  </div>
+
+  <div class="demo-2">
+    <h3>Demo Account 2</h3>
+    <h4>Account Name: demo2</h4>
+    <h4>Password: demo2</h4>
+    <h4>Email (for collaboration): demo2@demo.com</h4>
+  </div>
+
+</div>
