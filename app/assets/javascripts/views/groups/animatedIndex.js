@@ -148,7 +148,10 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
     $(this.$el.find(".task-circle"))
       .draggable({
-        revert: "invalid"
+        stack: '.group-circle',
+        appendTo: '#group-view-container',
+        zIndex: 250,
+        revert: "invalid",
       })
       .css({
         position: "absolute"
