@@ -12,6 +12,10 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     "click #taskShow": "taskShow",
   },
 
+  attributes: {
+    class: "tasks-index"
+  },
+
   render: function () {
     var self = this;
 
@@ -138,10 +142,10 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
       collection: sortedTasks
     })
 
-    this.$el.append(content)
+    this.$('.tasks-index').append(content)
 
     var $sidebar = $('<div id="sidebar">');
-    this.$el.prepend($sidebar);
+    this.$el.append($sidebar);
 
     this.listenTo(this.collection, "change", this.dueDateRender)
 
