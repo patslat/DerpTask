@@ -10,7 +10,7 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
 
   events: {
     "click #taskShow": "taskShow",
-    "click #submit-new-collaborator": "createCollaborator"
+    "submit #collaborator-form": "createCollaborator"
   },
 
   render: function () {
@@ -172,13 +172,21 @@ DropTask.Views.GroupsAnimatedIndex = Backbone.View.extend({
   },
 
   createCollaborator: function (event) {
-    event.preventDefault()
-    var form = $(this.$el.find("#collaborator-form")).serializeJSON();
+    event.preventDefault();
+    var self = this,
+        form = $(this.$el.find("#collaborator-form")).serializeJSON();
     $.ajax({
-      url: "/projects/" + this.model.id + "/collaborations" +
-        "?&authenticity_token=" + AUTH_TOKEN,
+      url: "/projects/" + this.model.id + "/collaborations",
       type: "POST",
       data: form,
+      success: function () {
+        self.$("#collaborator-modal").modal('toggle');
+      },
+      error: function () {
+        var $errorDiv = $('<div class="alert" style="width: 100px;">Invalid Email</div>')
+          .delay(1000).fadeOut();
+        self.$("#collaborator-modal").find('.modal-body')
+          .prepend($errorDiv)
+      }
     })
-  }
-})
+  },})

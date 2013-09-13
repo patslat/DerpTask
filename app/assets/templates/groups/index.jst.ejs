@@ -51,29 +51,29 @@
     <h3>Add a Collaborator</h3>
   </div>
 
+  <form id="collaborator-form">
   <div class="modal-body">
-    <form id="collaborator-form">
-      <input type="hidden"
-        name="collaboration[project_id]"
-        value="<%= model.id %>">
-      <input type="hidden" name="authenticity_token" value="<%= AUTH_TOKEN %>">
+    <input type="hidden"
+      name="collaboration[project_id]"
+      value="<%= model.id %>">
+    <input type="hidden" name="authenticity_token" value="<%= AUTH_TOKEN %>">
 
-      <label for="collaborator-email">Collaborator's Email:</label>
-      <input type="text"
-        name="collaboration[email_address]"
-        id="collaborator-email">
-    </form>
+    <label for="collaborator-email">Collaborator's Email:</label>
+    <input type="text"
+      name="collaboration[email_address]"
+      id="collaborator-email">
   </div>
 
   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">
+    <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">
       Close
     </button>
 
-    <button id="submit-new-collaborator"
+    <button type="button" id="submit-new-collaborator"
       data-dismiss="modal"
       class="btn btn-primary">
       Create
     </button>
   </div>
+  </form>
 </div>

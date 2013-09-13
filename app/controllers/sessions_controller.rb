@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by_username(params[:user][:username])
-    if @user.authenticate_password(params[:user][:password])
+    if @user && @user.authenticate_password(params[:user][:password])
       session[:token] = @user.set_session_token!
       redirect_to root_url
     else
