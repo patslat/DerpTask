@@ -129,18 +129,20 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     var tasks = this.collection
     this.$el.html(
       this.dueDateTemplate()
-    )
+    );
 
     var sortedTasks = new DropTask.Collections.Tasks(
       tasks.sortBy(function(m) {
         var date = new Date(m.get('due_date'))
         return -date.getTime()
       })
-    )
+    );
 
     var content = this.template({
       collection: sortedTasks
-    })
+    });
+
+    console.log(content)
 
     this.$('.tasks-index').append(content)
 
