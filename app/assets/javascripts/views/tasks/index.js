@@ -93,12 +93,6 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     this.$el.find(".tasks-view").sortable({
       connectWith: ".tasks-view",
       update: function (event, ui) {
-
-        console.log(parseFloat(ui.item.prev().attr("data-order")));
-        console.log(parseFloat(ui.item.attr("data-order")))
-        console.log(parseFloat(ui.item.next().attr("data-order")))
-
-
         var droppedTaskId = ui.item.attr("data-id"),
             droppedTask = self.collection.get(droppedTaskId),
             oldPriority = $(ui.sender).parent().attr("data-priority"),
@@ -147,7 +141,7 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     this.$('.tasks-index').append(content)
 
     var $sidebar = $('<div id="sidebar">');
-    this.$el.append($sidebar);
+    this.$el.prepend($sidebar);
 
     this.listenTo(this.collection, "change", this.dueDateRender)
 
