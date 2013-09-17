@@ -101,7 +101,6 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
               (parseFloat(ui.item.prev().attr("data-order")) +
               parseFloat(ui.item.next().attr("data-order"))) / 2.0
             );
-        console.log("NEW ORDER IS: " + newOrder);
         if (oldPriority) {
           droppedTask.save(
             { priority: newPriority, order: newOrder },
@@ -135,8 +134,6 @@ DropTask.Views.TasksIndex = Backbone.View.extend({
     var content = this.template({
       collection: sortedTasks
     });
-
-    console.log(content)
 
     this.$('.tasks-index').append(content)
 
