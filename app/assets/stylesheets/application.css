@@ -242,6 +242,7 @@ body {
 }
 
 .task-attr-container {
+  padding:5px;
 }
 
 #task-show {
