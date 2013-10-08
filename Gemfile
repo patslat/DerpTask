@@ -10,10 +10,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
+group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
+
 
 gem 'bcrypt-ruby'
 
