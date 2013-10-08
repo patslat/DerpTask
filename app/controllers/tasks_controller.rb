@@ -16,10 +16,7 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    if @task.update_attributes(params[:task])
-      respond_with @task
-    else
-      respond_with false
-    end
+    @task.update_attributes(params[:task])
+    respond_with @task
   end
 end

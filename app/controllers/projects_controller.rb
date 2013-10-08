@@ -18,8 +18,10 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.where(creator_id: current_user.id)
-      .includes(:groups, :tasks)
+    # might be better to do Projects.for_user(current_user)
+    @projects = current_user.projects
+                            #.with_groups
+                            #.with_tasks
 
     @projects += current_user.collaboration_projects
 
@@ -31,6 +33,6 @@ class ProjectsController < ApplicationController
                       .includes(
                         :groups, {:include => :tasks}
                       )
-    render :json => @project
+    respond_with @project
   end
 end
