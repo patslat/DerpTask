@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :username
 
+  after_create :set_session_token!
+
   has_many :projects, :foreign_key => :creator_id
   has_many :collaborations, :foreign_key => :collaborator_id
   has_many :collaboration_projects,
@@ -21,7 +23,10 @@ class User < ActiveRecord::Base
 
   def set_session_token!
     self.session_token = SecureRandom::urlsafe_base64(32)
-    save
-    return self.session_token
+    if save
+      self.session_token
+    else
+      nil
+    end
   end
 end
