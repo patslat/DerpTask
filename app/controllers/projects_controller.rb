@@ -20,8 +20,8 @@ class ProjectsController < ApplicationController
   def index
     # might be better to do Projects.for_user(current_user)
     @projects = current_user.projects
-                            #.with_groups
-                            #.with_tasks
+                            .with_groups
+                            .with_tasks
 
     @projects += current_user.collaboration_projects
 
